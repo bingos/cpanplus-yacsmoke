@@ -216,6 +216,7 @@ my %throw_away;
 	$self->status->_skipbuild(1);
     	my $package = $dist->package_name .'-'. $dist->package_version;
         msg(qq{Found previous build for "$package", trusting that});
+	# Deal with 'configure_requires' if we have the right version of CPANPLUS
 	$status = 1;
     }
     else {

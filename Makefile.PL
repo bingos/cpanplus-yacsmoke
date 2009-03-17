@@ -18,8 +18,7 @@ requires 'File::Spec' => 0;
 requires 'Regexp::Assemble' => 0.34;
 requires 'Config::IniFiles' => 2.38;
 requires 'Sort::Versions' => 0;
-eval "require Module::Build";
-unless ($@) {
+if ( can_use('Module::Build') ) {
    requires 'Module::Build' => 0.32;
    requires 'CPANPLUS::Dist::Build' => 0.14;
 }
