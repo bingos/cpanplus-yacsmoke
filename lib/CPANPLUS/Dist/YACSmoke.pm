@@ -10,6 +10,7 @@ use CPANPLUS::Internals::Utils;
 use CPANPLUS::Internals::Constants;
 use CPANPLUS::Internals::Constants::Report;
 use CPANPLUS::Error;
+use Params::Check qw[check];
 use POSIX qw( O_CREAT O_RDWR );         # for SDBM_File
 use version;
 use SDBM_File;
@@ -20,7 +21,7 @@ use YAML::Tiny;
 
 use vars qw($VERSION);
 
-$VERSION = '0.30';
+$VERSION = '0.32';
 
 use constant DATABASE_FILE => 'cpansmoke.dat';
 use constant CONFIG_FILE   => 'cpansmoke.ini';
@@ -198,11 +199,17 @@ my %throw_away;
     my $dist = $self->parent; # them
     my $dist_cpan = $dist->status->dist_cpan;
 
+    my $cb   = $dist->parent;
+    my $conf = $cb->configure_object;
+
     my $dir;
     unless( $dir = $dist->status->extract ) {
         error( loc( "No dir found to operate on!" ) );
         return;
     }
+
+    my %hash = @_;
+    push @_, 'prereq_format', 'CPANPLUS::Dist::YACSmoke' unless defined $hash{prereq_format};
 
     my $status;
     if ( -e catfile( $dir, '.yacsmoke.yml' ) ) {
@@ -217,6 +224,44 @@ my %throw_away;
     	my $package = $dist->package_name .'-'. $dist->package_version;
         msg(qq{Found previous build for "$package", trusting that});
 	# Deal with 'configure_requires' if we have the right version of CPANPLUS
+	my $args;
+	my( $force, $verbose, $prereq_target, $prereq_format, $prereq_build );
+	  {   local $Params::Check::ALLOW_UNKNOWN = 1;
+           my $tmpl = {
+            force           => {    default => $conf->get_conf('force'),
+                                    store   => \$force },
+            verbose         => {    default => $conf->get_conf('verbose'),
+                                    store   => \$verbose },
+            prereq_target   => {    default => '', store => \$prereq_target }, 
+            prereq_format   => {    default => '',
+                                    store   => \$prereq_format },   
+            prereq_build    => {    default => 0, store => \$prereq_build },
+          };
+
+          $args = check( $tmpl, \%hash ) or return;
+	}
+        my $safe_ver = version->new('0.85_01');
+        if ( version->new($CPANPLUS::Internals::VERSION) >= $safe_ver )
+        {   my $configure_requires = $self->find_configure_requires;     
+            my $ok = $dist->_resolve_prereqs(
+                            format          => $prereq_format,
+                            verbose         => $verbose,
+                            prereqs         => $configure_requires,
+                            target          => $prereq_target,
+                            force           => $force,
+                            prereq_build    => $prereq_build,
+                    );    
+    
+            unless( $ok ) {
+           
+                #### use $dist->flush to reset the cache ###
+                error( loc( "Unable to satisfy '%1' for '%2' " .
+                            "-- aborting install", 
+                            'configure_requires', $dist->module ) );    
+                $dist->status->prepared(0);
+		return 0;
+            } 
+	}
 	$status = 1;
     }
     else {
