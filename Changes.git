@@ -1,1 +1,60 @@
-foo
+commit b1bde0028fd87289fe2212d9a76ae7482f5ee1ff
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Wed Mar 18 00:01:28 2009 +0000
+
+    bump for release
+
+M	Changes
+
+commit 19b6c7e6e2f6f1864124a55ea9c5a4f0c1fdbcff
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Tue Mar 17 23:02:44 2009 +0000
+
+    Added distop to generate Changes.git file
+
+A	Changes.git
+M	Makefile.PL
+
+commit 028469d2336dab8f63c624f8f9a1bbf6adf0ca5a
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Tue Mar 17 15:45:48 2009 +0000
+
+    Added in 'configure_requires' support, stolen from CP::D::MM and CP::D::Build.
+
+M	Makefile.PL
+M	lib/CPANPLUS/Dist/YACSmoke.pm
+M	lib/CPANPLUS/YACSmoke.pm
+
+commit 432f2f642e5eece2d0879beb4b759b921cdb3382
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Tue Mar 17 12:09:28 2009 +0000
+
+    Fixed crufty 'require Module::Build' check in Makefile.PL to use can_use() from Module::Install instead
+
+M	Makefile.PL
+M	lib/CPANPLUS/Dist/YACSmoke.pm
+
+commit 068f9fa205e7be33d8ba9a62e7b67a13fe747592
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Tue Mar 17 11:25:06 2009 +0000
+
+    Updated required versions of Module::Build and CPANPLUS::Dist::Build
+
+M	Makefile.PL
+
+commit d0ecdc4332d42fa649925f10476d5c21c2b573ca
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Tue Mar 17 11:23:16 2009 +0000
+
+    Initial git commit
+
+A	Changes
+A	LICENSE
+A	MANIFEST
+A	Makefile.PL
+A	README
+A	lib/CPANPLUS/Dist/YACSmoke.pm
+A	lib/CPANPLUS/YACSmoke.pm
+A	t/00_use.t
+A	t/99_pod.t
+A	t/99_pod_coverage.t

@@ -23,5 +23,5 @@ if ( can_use('Module::Build') ) {
    requires 'Module::Build' => 0.32;
    requires 'CPANPLUS::Dist::Build' => 0.14;
 }
-makemaker_args(dist => { PREOP => "git log --raw --tags > ./Changes.git" });
+makemaker_args(dist => { PREOP => "git log --name-status --tags > ./Changes.git" });
 WriteAll();
