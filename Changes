@@ -1,6 +1,12 @@
 CPANPLUS::YACSmoke
 ==================
 
+0.32	Wed Mar 18 00:00:31 GMT 2009
+    - Updated required versions of Module::Build and CPANPLUS::Dist::Build
+    - Fixed crufty 'require Module::Build' check in Makefile.PL to use can_use() 
+	from Module::Install instead
+    - Added in 'configure_requires' support, stolen from CP::D::MM and CP::D::Build.
+
 0.30	Tue Jan  6 16:05:15 GMT 2009
 	- Added detection of PERL5_MINISMOKEBOX env var
 
