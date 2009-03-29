@@ -17,11 +17,10 @@ use SDBM_File;
 use File::Spec::Functions;
 use Regexp::Assemble;
 use Config::IniFiles;
-use YAML::Tiny;
 
 use vars qw($VERSION);
 
-$VERSION = '0.32';
+$VERSION = '0.33_01';
 
 use constant DATABASE_FILE => 'cpansmoke.dat';
 use constant CONFIG_FILE   => 'cpansmoke.ini';
@@ -192,115 +191,9 @@ my %throw_away;
     return 1;
   }
 
-  sub prepare {
-    # Okay, we are plugged in below CP::D::MM or CP::D::Build
-    # We'll have to do some magic here
-    my $self = shift; # us
-    my $dist = $self->parent; # them
-    my $dist_cpan = $dist->status->dist_cpan;
-
-    my $cb   = $dist->parent;
-    my $conf = $cb->configure_object;
-
-    my $dir;
-    unless( $dir = $dist->status->extract ) {
-        error( loc( "No dir found to operate on!" ) );
-        return;
-    }
-
-    my %hash = @_;
-    push @_, 'prereq_format', 'CPANPLUS::Dist::YACSmoke' unless defined $hash{prereq_format};
-
-    my $status;
-    if ( -e catfile( $dir, '.yacsmoke.yml' ) ) {
-	my @stuff = YAML::Tiny::LoadFile( catfile( $dir, '.yacsmoke.yml' ) );
-	my $data = shift @stuff;
-	$self->status->_prepare( $data->{_prepare} );
-	$self->status->_prereqs( $data->{_prereqs} );
-	$self->status->_create( $data->{_create} );
-	# Load shit
-	$dist_cpan->status->$_( $data->{_prepare}->{$_} ) for keys %{ $data->{_prepare} };
-	$self->status->_skipbuild(1);
-    	my $package = $dist->package_name .'-'. $dist->package_version;
-        msg(qq{Found previous build for "$package", trusting that});
-	# Deal with 'configure_requires' if we have the right version of CPANPLUS
-	my $args;
-	my( $force, $verbose, $prereq_target, $prereq_format, $prereq_build );
-	  {   local $Params::Check::ALLOW_UNKNOWN = 1;
-           my $tmpl = {
-            force           => {    default => $conf->get_conf('force'),
-                                    store   => \$force },
-            verbose         => {    default => $conf->get_conf('verbose'),
-                                    store   => \$verbose },
-            prereq_target   => {    default => '', store => \$prereq_target }, 
-            prereq_format   => {    default => '',
-                                    store   => \$prereq_format },   
-            prereq_build    => {    default => 0, store => \$prereq_build },
-          };
-
-          $args = check( $tmpl, \%hash ) or return;
-	}
-        my $safe_ver = version->new('0.85_01');
-        if ( version->new($CPANPLUS::Internals::VERSION) >= $safe_ver )
-        {   my $configure_requires = $self->find_configure_requires;     
-            my $ok = $dist->_resolve_prereqs(
-                            format          => $prereq_format,
-                            verbose         => $verbose,
-                            prereqs         => $configure_requires,
-                            target          => $prereq_target,
-                            force           => $force,
-                            prereq_build    => $prereq_build,
-                    );    
-    
-            unless( $ok ) {
-           
-                #### use $dist->flush to reset the cache ###
-                error( loc( "Unable to satisfy '%1' for '%2' " .
-                            "-- aborting install", 
-                            'configure_requires', $dist->module ) );    
-                $dist->status->prepared(0);
-		return 0;
-            } 
-	}
-	$status = 1;
-    }
-    else {
-        $status = $self->SUPER::prepare( @_ );
-	my %stat;
-	my $install_type = $dist->status->installer_type;
-	if ( $install_type eq 'CPANPLUS::Dist::Build' ) {
-	   %stat = map { $_ => $dist_cpan->status->$_ }
-	           grep { /^(_prepare_args|_buildflags|_distdir|prepared|prereqs)$/ } $dist_cpan->status->ls_accessors;
-	}
-	else {
-	   %stat = map { $_ => $dist_cpan->status->$_ } 
-		   grep { /^(_prepare_args|makefile|prereqs|distdir|prepared)$/ } $dist_cpan->status->ls_accessors;
-	}
-        $self->status->_prepare( \%stat );
-	$self->status->_prereqs( $dist->status->prereqs ) if $dist->status->prereqs;
-    }
-    return $status;
-  }
-
   sub create {
     my $self = shift;
     my $mod  = $self->parent;
-    my $dist_cpan = $mod->status->dist_cpan;
-
-    if ( $self->status->_skipbuild ) {
-	my $create = $self->status->_create;
-	$dist_cpan->status->$_( $create->{$_} ) for keys %{ $create };
-	$dist_cpan->_resolve_prereqs(
-                            format          => $create->{_create_args}->{prereq_format},
-                            verbose         => $create->{_create_args}->{verbose},
-                            prereqs         => $self->status->_prereqs,
-                            target          => $create->{_create_args}->{prereq_target},
-                            force           => $create->{_create_args}->{force},
-                            prereq_build    => $create->{_create_args}->{prereq_build},
-                    );
-	$mod->add_to_includepath();
-	return 1;
-    }
 
     my $package = $mod->package_name .'-'. $mod->package_version;
     msg(qq{Checking for previous PASS result for "$package"});
@@ -309,27 +202,7 @@ my %throw_away;
        msg(qq{Found previous PASS result for "$package" skipping tests.});
        push @_, skiptest => 1;
     } 
-    my $dir = $mod->status->extract;
-    my $status = $self->SUPER::create( @_ );
-    if ( $status && ! -e catfile( $dir, '.yacsmoke.yml' ) ) {
-	my %stat;
-	my $install_type = $mod->status->installer_type;
-	if ( $install_type eq 'CPANPLUS::Dist::Build' ) {
-	   %stat = map { $_ => $dist_cpan->status->$_ }
-	           grep { /^(created|_create_args|_buildflags|build|test)$/ } $dist_cpan->status->ls_accessors;
-	}
-	else {
-	   %stat = map { $_ => $dist_cpan->status->$_ } 
-		   grep { /^(created|_create_args|make|test)$/ } $dist_cpan->status->ls_accessors;
-	}
-	$self->status->_create( \%stat );
-	my $data = { };
-	$data->{_prepare} = $self->status->_prepare;
-	$data->{_prereqs} = $self->status->_prereqs;
-	$data->{_create} = $self->status->_create;
-	YAML::Tiny::DumpFile( catfile( $dir, '.yacsmoke.yml' ), $data );
-    }
-    return $status;
+    $self->SUPER::create( @_ );
   }
 
 sub _env_report {

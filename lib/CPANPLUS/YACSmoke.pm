@@ -34,7 +34,7 @@ our %EXPORT_TAGS = (
 our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 our @EXPORT    = ( @{ $EXPORT_TAGS{'default'} } );
 
-$VERSION = '0.32';
+$VERSION = '0.33_01';
 
 {
   my %Checked;
@@ -150,6 +150,7 @@ sub test {
      };
   }
 
+  $self->{cpanplus}->save_state();
   return 1;
 }
 
@@ -337,7 +338,7 @@ sub _download_list {
   my $self  = shift;
 
   my $path  = catdir( CPANPLUS::Internals::Utils->_home_dir(), '.cpanplus' );
-  my $local = catfile( $path, RECENT_FILE ); # catfile
+  my $local = catfile( $path, RECENT_FILE );
 
   my $hosts = $self->{conf}->get_conf('hosts');
   my $h_ind = 0;
@@ -420,7 +421,7 @@ The C<exclude_dists> setting, which is laid out as:
   mod_perl
   HERE
 
-The above would then ignore any distribution that include the string
+The above would then ignore any distribution that includes the string
 'mod_perl' in its name. This is useful for distributions which use
 external C libraries, which are not installed, or for which testing
 is problematic.
