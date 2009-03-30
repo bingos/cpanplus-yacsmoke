@@ -11,7 +11,7 @@ build_requires 'Test::More' => 0.47;
 requires 'YAML::Tiny' => 0;
 requires 'Test::Reporter' => 1.4002;
 requires 'version'  => '0.73';
-requires 'CPANPLUS' => 0.84;
+requires 'CPANPLUS' => '0.85_07';
 requires 'Module::Load::Conditional' => 0;
 requires 'Params::Check' => 0;
 requires 'SDBM_File' => 0;
@@ -24,4 +24,5 @@ if ( can_use('Module::Build') ) {
    requires 'CPANPLUS::Dist::Build' => 0.14;
 }
 makemaker_args(dist => { PREOP => "git log --name-status --tags > ./Changes.git" });
+auto_set_repository;
 WriteAll();

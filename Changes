@@ -1,6 +1,12 @@
 CPANPLUS::YACSmoke
 ==================
 
+0.33_01 Mon Mar 30 11:54:18 BST 2009
+    - A few minor alterations to the format of the Changes.git file
+    - Rolled back 'prepare' stuff and saving of .yml state, 
+      this will be dealt with by save_state in recent dev CPANPLUS
+    - Included Module::Install::Repository functionality
+    
 0.32	Wed Mar 18 00:00:31 GMT 2009
     - Updated required versions of Module::Build and CPANPLUS::Dist::Build
     - Fixed crufty 'require Module::Build' check in Makefile.PL to use can_use() 
