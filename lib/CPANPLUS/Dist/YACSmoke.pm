@@ -20,7 +20,7 @@ use Config::IniFiles;
 
 use vars qw($VERSION);
 
-$VERSION = '0.33_01';
+$VERSION = '0.33_02';
 
 use constant DATABASE_FILE => 'cpansmoke.dat';
 use constant CONFIG_FILE   => 'cpansmoke.ini';
@@ -194,6 +194,39 @@ my %throw_away;
   sub create {
     my $self = shift;
     my $mod  = $self->parent;
+    my $dist_cpan = $mod->status->dist_cpan;
+
+    if ( $dist_cpan->status->created ) {
+       my %hash = @_;
+       my $conf = $mod->parent->configure_object;
+       my $args;
+       my($force,$verbose,$prereq_target,$prereq_format, $prereq_build);
+       {   local $Params::Check::ALLOW_UNKNOWN = 1;
+          my $tmpl = {
+            force           => {    default => $conf->get_conf('force'),
+                                    store   => \$force },
+            verbose         => {    default => $conf->get_conf('verbose'),
+                                    store   => \$verbose },
+            prereq_target   => {    default => '', store => \$prereq_target },
+            prereq_format   => {    #default => $self->status->installer_type,
+                                    default => '',
+                                    store   => \$prereq_format },
+            prereq_build    => {    default => 0, store => \$prereq_build },                                    
+          };
+          $args = check( $tmpl, \%hash ) or return;
+       }
+       return 0 unless 
+	  $self->_resolve_prereqs(
+                        force           => $force,
+                        format          => $prereq_format,
+                        verbose         => $verbose,
+                        prereqs         => $mod->status->prereqs,
+                        target          => $prereq_target,
+                        prereq_build    => $prereq_build,
+                    );
+       $mod->add_to_includepath();
+       return 1;
+    }
 
     my $package = $mod->package_name .'-'. $mod->package_version;
     msg(qq{Checking for previous PASS result for "$package"});

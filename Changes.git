@@ -1,3 +1,32 @@
+commit de15746243334aefb63c1d5a7f2e38317c14705b
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Mon Mar 30 11:55:22 2009 +0100
+
+    Prepped for CPAN release, added M::I::Repository to Makefile.PL for repo meta.
+
+M	Changes
+M	MANIFEST
+M	Makefile.PL
+
+commit d9ce2a26b7153a47f3db10a87788f54bcd1b5c6f
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Sun Mar 29 22:39:47 2009 +0100
+
+    Rolled back 'prepare' stuff and saving of .yml state, this will be dealt with by save_state in CPANPLUS
+
+M	lib/CPANPLUS/Dist/YACSmoke.pm
+M	lib/CPANPLUS/YACSmoke.pm
+
+commit ff6c167b722f5029d78ce969a3fc7714264a9b16
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Wed Mar 18 00:08:59 2009 +0000
+
+    A few minor alterations to the format of the Changes.git file
+
+M	Changes.git
+M	MANIFEST
+M	Makefile.PL
+
 commit b1bde0028fd87289fe2212d9a76ae7482f5ee1ff
 Author: Chris Williams <chris@bingosnet.co.uk>
 Date:   Wed Mar 18 00:01:28 2009 +0000
