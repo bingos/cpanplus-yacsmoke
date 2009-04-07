@@ -24,5 +24,5 @@ if ( can_use('Module::Build') ) {
    requires 'CPANPLUS::Dist::Build' => 0.14;
 }
 makemaker_args(dist => { PREOP => "git log --name-status --tags > ./Changes.git" });
-auto_set_repository;
+eval "auto_set_repository()";
 WriteAll();

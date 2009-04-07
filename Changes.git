@@ -1,3 +1,21 @@
+commit 8aeb6c416a1141bc1150dbdfb3dba1a3ad65dea0
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Wed Apr 1 22:47:16 2009 +0100
+
+    Prep for CPAN dev release
+
+M	Changes
+
+commit c35b1eadbf27780683d9b884b9b6d9576c4f9671
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Tue Mar 31 23:40:18 2009 +0100
+
+    Think we have to mke sure that the prereqs get resolved recursively. Down and down the rabbit hole.
+
+M	Changes.git
+M	lib/CPANPLUS/Dist/YACSmoke.pm
+M	lib/CPANPLUS/YACSmoke.pm
+
 commit de15746243334aefb63c1d5a7f2e38317c14705b
 Author: Chris Williams <chris@bingosnet.co.uk>
 Date:   Mon Mar 30 11:55:22 2009 +0100
