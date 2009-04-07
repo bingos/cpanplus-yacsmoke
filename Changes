@@ -1,6 +1,9 @@
 CPANPLUS::YACSmoke
 ==================
 
+0.33_03 Tue Apr  7 21:00:19 BST 2009
+    - Make auto_set_repository() only run at author-time
+
 0.33_02 Wed Apr  1 22:43:13 BST 2009
     - Rolled back in the prereqs resolution which was required.
 
