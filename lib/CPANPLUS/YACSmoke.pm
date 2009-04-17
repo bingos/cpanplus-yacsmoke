@@ -34,7 +34,7 @@ our %EXPORT_TAGS = (
 our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 our @EXPORT    = ( @{ $EXPORT_TAGS{'default'} } );
 
-$VERSION = '0.33_03';
+$VERSION = '0.33_04';
 
 {
   my %Checked;
@@ -62,7 +62,6 @@ sub new {
 
   $ENV{AUTOMATED_TESTING} = 1;
   $ENV{PERL_MM_USE_DEFAULT} = 1; # despite verbose setting
-  $ENV{PERL5_CPANPLUS_VERBOSE} = 1; # set verbosity of CPANPLUS
 
   my $conf = CPANPLUS::Configure->new();
 

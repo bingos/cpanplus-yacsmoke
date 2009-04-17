@@ -1,3 +1,31 @@
+commit 2c733f5860af53c67d4ae4c085009aa7ce957992
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Tue Apr 7 21:02:13 2009 +0100
+
+    Remember to actually update the version numbers
+
+M	lib/CPANPLUS/Dist/YACSmoke.pm
+M	lib/CPANPLUS/YACSmoke.pm
+
+commit 1d8b75913f700f2f423795df31589b69b5a275bf
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Tue Apr 7 21:01:16 2009 +0100
+
+    Update changes
+
+M	Changes
+
+commit 8d41c6d4ad295e761ec8d6c802f979ef7610ddb0
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Tue Apr 7 21:00:06 2009 +0100
+
+    Make auto_set_repository() only run at author-time
+
+M	Changes.git
+M	MANIFEST
+A	MANIFEST.SKIP
+M	Makefile.PL
+
 commit 8aeb6c416a1141bc1150dbdfb3dba1a3ad65dea0
 Author: Chris Williams <chris@bingosnet.co.uk>
 Date:   Wed Apr 1 22:47:16 2009 +0100
