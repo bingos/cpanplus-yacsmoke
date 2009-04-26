@@ -1,3 +1,14 @@
+commit 19fb5f3f0587a365f83c84eb454b1170e2d2efd2
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Fri Apr 17 14:08:29 2009 +0100
+
+    Remove the $ENV{PERL5_CPANPLUS_VERBOSE} from YACSmoke, causes problems with CPANPLUS testsuite and is unnecessary.
+
+M	Changes
+M	Changes.git
+M	lib/CPANPLUS/Dist/YACSmoke.pm
+M	lib/CPANPLUS/YACSmoke.pm
+
 commit 2c733f5860af53c67d4ae4c085009aa7ce957992
 Author: Chris Williams <chris@bingosnet.co.uk>
 Date:   Tue Apr 7 21:02:13 2009 +0100

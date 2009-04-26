@@ -1,6 +1,10 @@
 CPANPLUS::YACSmoke
 ==================
 
+0.34	Sun Apr 26 21:43:07 BST 2009
+    - CPANPLUS 0.86 is out, so we can set that as a prereq and make a 
+      stable release. Hurrah.
+
 0.33_04	Fri Apr 17 14:05:59 BST 2009
     - Remove the $ENV{PERL5_CPANPLUS_VERBOSE} from YACSmoke, 
       causes problems with CPANPLUS testsuite and is unnecessary.
