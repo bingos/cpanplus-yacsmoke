@@ -6,6 +6,7 @@ author 'Chris Williams <chris@bingosnet.co.uk>';
 version_from 'lib/CPANPLUS/YACSmoke.pm';
 abstract_from 'lib/CPANPLUS/YACSmoke.pm';
 license 'perl';
+auto_license holder => 'Chris Williams, Jos Boumans, Robert Rothenberg and Barbie';
 perl_version '5.006';
 build_requires 'Test::More' => 0.47;
 requires 'YAML::Tiny' => 0;
@@ -20,9 +21,9 @@ requires 'Regexp::Assemble' => 0.34;
 requires 'Config::IniFiles' => 2.38;
 requires 'Sort::Versions' => 0;
 if ( can_use('Module::Build') ) {
-   requires 'Module::Build' => 0.32;
-   requires 'CPANPLUS::Dist::Build' => 0.14;
+   requires 'Module::Build' => 0.33;
+   requires 'CPANPLUS::Dist::Build' => 0.24;
 }
 makemaker_args(dist => { PREOP => "git log --name-status --tags > ./Changes.git" });
-eval "auto_set_repository()";
+githubmeta;
 WriteAll();

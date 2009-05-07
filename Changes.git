@@ -1,3 +1,15 @@
+commit 5c2db919dbafa94d84a4419322a6350d6aea39c0
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Sun Apr 26 21:44:47 2009 +0100
+
+    CPANPLUS 0.86 is out, so we can set that as a prereq and make a stable release. Hurrah.
+
+M	Changes
+M	Changes.git
+M	Makefile.PL
+M	lib/CPANPLUS/Dist/YACSmoke.pm
+M	lib/CPANPLUS/YACSmoke.pm
+
 commit 19fb5f3f0587a365f83c84eb454b1170e2d2efd2
 Author: Chris Williams <chris@bingosnet.co.uk>
 Date:   Fri Apr 17 14:08:29 2009 +0100
