@@ -1,6 +1,13 @@
 CPANPLUS::YACSmoke
 ==================
 
+0.36	Tue Jun  9 14:54:10 BST 2009
+    - Added yactool a simple cli to CPANPLUS::YACSmoke
+    - CPANPLUS::Config::YACSmoke, set an env var to specify the base_dir
+	for configuration files.
+    - Added no_update to config settings so the source files don't get
+	updated during smoke runs.
+
 0.34	Sun Apr 26 21:43:07 BST 2009
     - CPANPLUS 0.86 is out, so we can set that as a prereq and make a 
       stable release. Hurrah.
