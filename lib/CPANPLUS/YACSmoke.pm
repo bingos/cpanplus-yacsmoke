@@ -34,7 +34,7 @@ our %EXPORT_TAGS = (
 our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 our @EXPORT    = ( @{ $EXPORT_TAGS{'default'} } );
 
-$VERSION = '0.34';
+$VERSION = '0.36';
 
 {
   my %Checked;
@@ -68,6 +68,7 @@ sub new {
   # Override configure settings
   $conf->set_conf( prereqs => 2 ); # force to ask callback
   $conf->set_conf( skiptest => 0 ); 
+  $conf->set_conf( no_update => 1 ); # Don't reindex during smoking
   $conf->set_conf( dist_type => 'CPANPLUS::Dist::YACSmoke' ); # this is where the magic happens.
   $conf->set_conf( cpantest => 'dont_cc' ); # Yes, we want to report test results. But not CC
   $conf->set_conf( verbose => 1 ); # set verbosity to true.
@@ -532,6 +533,21 @@ The object interface is created normally through the test() or mark() functions 
 
 =head1 ENVIRONMENT VARIABLES
 
+The following environment variables affect the operation of this module:
+
+=over
+
+=item C<PERL5_YACSMOKE_BASE>
+
+Loaded into L<CPANPLUS> by L<CPANPLUS::Config::YACSmoke>, sets the basedir where L<CPANPLUS> and
+CPANPLUS::YACSmoke related modules find the C<.cpanplus> directory for their settings
+
+  export PERL5_YACSMOKE_BASE=/home/moo/perls/conf/perl-5.8.9/
+
+Would set the base dir to C</home/moo/perls/conf/perl-5.8.9/.cpanplus/>
+
+=back
+
 Several environment variables get set by the module:
 
 =over
@@ -544,10 +560,6 @@ Set to 1 to indicate that we are currently running in an automated testing envir
 
 Set to 1 MakeMaker and Module::Build's prompt functions will always return the default 
 without waiting for user input.
-
-=item C<PERL5_CPANPLUS_VERBOSE>
-
-Set to 1 so L<CPANPLUS> will run in C<verbose> mode.
 
 =item C<MAILDOMAIN>
 
@@ -567,7 +579,7 @@ Contributions and patience from Jos Boumans the L<CPANPLUS> guy!
 
 =head1 LICENSE
 
-Copyright C<(c)> Chris Williams, Jos Boumans, Robert Rothenberg and Barbie.
+Copyright E<copy> Chris Williams, Jos Boumans, Robert Rothenberg and Barbie.
 
 This module may be used, modified, and distributed under the same terms as Perl itself. Please see the license that came with your Perl distribution for details.
 
@@ -576,6 +588,8 @@ This module may be used, modified, and distributed under the same terms as Perl 
 L<CPANPLUS>
 
 L<CPANPLUS::Dist::YACSmoke>
+
+L<CPANPLUS::Config::YACSmoke>
 
 L<CPAN::YACSmoke>
 

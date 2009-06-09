@@ -25,5 +25,7 @@ if ( can_use('Module::Build') ) {
    requires 'CPANPLUS::Dist::Build' => 0.24;
 }
 makemaker_args(dist => { PREOP => "git log --name-status --tags > ./Changes.git" });
+auto_provides;
 githubmeta;
+install_script 'bin/yactool';
 WriteAll();
