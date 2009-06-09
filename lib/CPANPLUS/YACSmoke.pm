@@ -34,7 +34,7 @@ our %EXPORT_TAGS = (
 our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 our @EXPORT    = ( @{ $EXPORT_TAGS{'default'} } );
 
-$VERSION = '0.36';
+$VERSION = '0.38';
 
 {
   my %Checked;
@@ -44,7 +44,7 @@ $VERSION = '0.36';
 sub _connect_db {
   my $self = shift;
   return if $TiedObj;
-  my $filename = catfile( CPANPLUS::Internals::Utils->_home_dir(), '.cpanplus', DATABASE_FILE );
+  my $filename = catfile( $self->{conf}->get_conf('base'), DATABASE_FILE );
   $TiedObj = tie %Checked, 'SDBM_File', $filename, O_CREAT|O_RDWR, 0644;
   $self->{checked} = \%Checked;
 }
@@ -89,7 +89,7 @@ sub new {
   my $cb   = CPANPLUS::Backend->new($conf);
 
   my $exclude_dists;
-  my $config_file = catfile( CPANPLUS::Internals::Utils->_home_dir(), '.cpanplus', CONFIG_FILE );
+  my $config_file = catfile( $conf->get_conf('base'), CONFIG_FILE );
   if ( -r $config_file ) {
      my $cfg = Config::IniFiles->new(-file => $config_file);
      my @list = $cfg->val( 'CONFIG', 'exclude_dists' );

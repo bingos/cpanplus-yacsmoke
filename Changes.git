@@ -1,3 +1,38 @@
+commit ee2253b05e426c32f853bc58354cb40366578acf
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Tue Jun 9 14:55:58 2009 +0100
+
+    Update changes
+
+M	Changes
+
+commit f605e91810b19360737931e3f79cde59b33ed4fd
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Tue Jun 9 14:53:28 2009 +0100
+
+    Updated the yactool and made minor adjustments to the other modules.
+
+M	MANIFEST
+M	Makefile.PL
+A	bin/yactool
+M	lib/CPANPLUS/Config/YACSmoke.pm
+M	lib/CPANPLUS/Dist/YACSmoke.pm
+M	lib/CPANPLUS/YACSmoke.pm
+M	t/00_use.t
+
+commit 354650adf6cd4c2e828ba0536766c5e508302adf
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Thu May 7 22:56:21 2009 +0100
+
+    AutoLicense and githubmeta. Added the CPANPLUS::Config sub-class
+
+M	Changes.git
+D	LICENSE
+M	MANIFEST
+D	MANIFEST.SKIP
+M	Makefile.PL
+A	lib/CPANPLUS/Config/YACSmoke.pm
+
 commit 5c2db919dbafa94d84a4419322a6350d6aea39c0
 Author: Chris Williams <chris@bingosnet.co.uk>
 Date:   Sun Apr 26 21:44:47 2009 +0100
