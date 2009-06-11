@@ -1,6 +1,10 @@
 CPANPLUS::YACSmoke
 ==================
 
+0.40	Fri Jun 12 00:15:26 BST 2009
+    - Added gmail.com to list of addresses we don't set MAILDOMAIN to,
+	reported by Justin Hunter (arcanez)
+
 0.38	Tue Jun  9 15:21:04 BST 2009
     - Forgot to make the various modules actually use get_conf('base') 
 	to find the configuration files now

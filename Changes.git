@@ -1,3 +1,15 @@
+commit 53113a50780f24ce699c091fa90766f48d9c734d
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Tue Jun 9 15:22:22 2009 +0100
+
+    Forgot to make the various modules actually use get_conf('base') to find the configuration files now
+
+M	Changes
+M	Changes.git
+M	lib/CPANPLUS/Config/YACSmoke.pm
+M	lib/CPANPLUS/Dist/YACSmoke.pm
+M	lib/CPANPLUS/YACSmoke.pm
+
 commit ee2253b05e426c32f853bc58354cb40366578acf
 Author: Chris Williams <chris@bingosnet.co.uk>
 Date:   Tue Jun 9 14:55:58 2009 +0100
