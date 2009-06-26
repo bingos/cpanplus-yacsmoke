@@ -1,6 +1,9 @@
 CPANPLUS::YACSmoke
 ==================
 
+0.42  Fri Jun 26 22:50:23 BST 2009
+    - Fix path to the config file in Dist::YACSmoke, (Vincent Pit)
+
 0.40	Fri Jun 12 00:15:26 BST 2009
     - Added gmail.com to list of addresses we don't set MAILDOMAIN to,
 	reported by Justin Hunter (arcanez)
