@@ -1,3 +1,15 @@
+commit 89618ce3043d1724398d2554f49010f124eb31ed
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Fri Jun 12 00:18:59 2009 +0100
+
+    Added gmail.com to list of addresses we don't set MAILDOMAIN to, reported by Justin Hunter (arcanez)
+
+M	Changes
+M	Changes.git
+M	lib/CPANPLUS/Config/YACSmoke.pm
+M	lib/CPANPLUS/Dist/YACSmoke.pm
+M	lib/CPANPLUS/YACSmoke.pm
+
 commit 53113a50780f24ce699c091fa90766f48d9c734d
 Author: Chris Williams <chris@bingosnet.co.uk>
 Date:   Tue Jun 9 15:22:22 2009 +0100
