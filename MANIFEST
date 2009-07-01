@@ -21,5 +21,11 @@ MANIFEST			This list of files
 META.yml
 README
 t/00_use.t
+t/01_new.t
 t/99_pod.t
 t/99_pod_coverage.t
+t/dummy-CPAN/authors/01mailrc.txt.gz
+t/dummy-CPAN/modules/02packages.details.txt.gz
+t/dummy-CPAN/modules/03modlist.data.gz
+t/dummy-perl/.hidden
+t/inc/conf.pl

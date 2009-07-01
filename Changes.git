@@ -1,3 +1,41 @@
+commit 083af6bebb1db8552a8601c71d36cfaaf2b939e0
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Fri Jun 26 22:52:26 2009 +0100
+
+    Prepare for release
+
+M	Changes
+M	lib/CPANPLUS/Config/YACSmoke.pm
+M	lib/CPANPLUS/Dist/YACSmoke.pm
+M	lib/CPANPLUS/YACSmoke.pm
+
+commit b5522b93cecf1286d6462ac39b69982578ed8f42
+Merge: 5ef0a59 0433201
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Fri Jun 26 18:45:01 2009 +0100
+
+    Merge branch 'master' of git@github.com:bingos/cpanplus-yacsmoke
+
+commit 5ef0a59101871ee767dd2e486843134977325338
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Fri Jun 26 18:44:11 2009 +0100
+
+    Update Changes.git
+
+M	Changes.git
+
+commit 0433201f2ffb5f748aefb777ec631841e3204b77
+Author: Vincent Pit <vince@profvince.com>
+Date:   Sat Jun 27 00:32:11 2009 +0800
+
+    Fix path to the config file
+    
+    $conf->get_conf('base') should already contain '.cpanplus' at its end.
+    
+    Signed-off-by: Chris Williams <chris@bingosnet.co.uk>
+
+M	lib/CPANPLUS/Dist/YACSmoke.pm
+
 commit 89618ce3043d1724398d2554f49010f124eb31ed
 Author: Chris Williams <chris@bingosnet.co.uk>
 Date:   Fri Jun 12 00:18:59 2009 +0100
