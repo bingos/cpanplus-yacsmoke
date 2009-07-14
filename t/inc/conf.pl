@@ -197,8 +197,6 @@ sub gimme_conf {
 
 ### clean these files if we're under perl core
 END { 
-    if ( $ENV{PERL_CORE} ) {
-
         _clean_test_dir( [
             gimme_conf->get_conf('base'),   
             TEST_CONF_MIRROR_DIR,
@@ -207,7 +205,6 @@ END {
     #         TEST_INSTALL_DIR_MAN1, 
     #         TEST_INSTALL_DIR_MAN3,
         ], 0 ); # DO NOT be verbose under perl core -- makes tests fail
-    }
 }
 
 ### whenever we start a new script, we want to clean out our

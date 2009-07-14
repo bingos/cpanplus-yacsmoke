@@ -59,11 +59,12 @@ sub _disconnect_db {
 
 sub new {
   my $package = shift;
+  my $nconf = shift if ref $_[0] and $_[0]->isa('CPANPLUS::Configure');
 
   $ENV{AUTOMATED_TESTING} = 1;
   $ENV{PERL_MM_USE_DEFAULT} = 1; # despite verbose setting
 
-  my $conf = CPANPLUS::Configure->new();
+  my $conf = $nconf || CPANPLUS::Configure->new();
 
   # Override configure settings
   $conf->set_conf( prereqs => 2 ); # force to ask callback
