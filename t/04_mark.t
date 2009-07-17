@@ -8,7 +8,7 @@ use strict;
 use warnings;
 use File::Temp;
 use File::Find;
-use Test::More tests => 9;
+use Test::More tests => 16;
 use_ok('CPANPLUS::YACSmoke');
 
 my $dir = File::Temp::tempdir( CLEANUP => 1 );
@@ -21,13 +21,9 @@ isa_ok($self,'CPANPLUS::YACSmoke');
 ok( $ENV{$_}, "$_ is set" ) for @env_vars;
 isa_ok( $self->{conf}, 'CPANPLUS::Configure' );
 isa_ok( $self->{cpanplus}, 'CPANPLUS::Backend' );
-$self->{conf}->set_conf( cpantest_reporter_args => { transport => 'File', transport_args => [ $dir ], } );
 $self->{conf}->set_conf( md5 => 0 );
-$self->test('E/EU/EUNOXS/Foo-Bar-0.01.tar.gz');
-my @reports;
-find( sub { 
-    push @reports, $_ if -f; 
-}, $dir );
-is( scalar @reports, 1, 'found a report in the directory' );
-my $grade = $self->mark('Foo-Bar-0.01');
-is($grade,'pass','Grade was a PASS');
+ok( !defined $self->mark('Foo::Bar'), 'No mark yet' );
+foreach my $grade (qw(PASS FAIL NA UNKNOWN)) {
+  is($self->mark('Foo::Bar',$grade),lc $grade,"Setting Foo::Bar to '$grade'");
+  is($self->mark('Foo::Bar'),lc $grade,"Foo::Bar is '$grade'");
+}
