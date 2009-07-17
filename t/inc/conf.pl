@@ -156,7 +156,7 @@ sub gimme_conf {
     my $conf = CPANPLUS::Configure->new( load_configs => 0 );
 
     my $dummy_cpan = dummy_cpan_dir();
-    
+
     $conf->set_conf( hosts  => [ { 
                         path        => $dummy_cpan,
                         scheme      => 'file',

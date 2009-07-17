@@ -23,6 +23,7 @@ README
 t/00_use.t
 t/01_new.t
 t/02_test.t
+t/03_config_ys.t
 t/99_pod.t
 t/99_pod_coverage.t
 t/dummy-CPAN/authors/01mailrc.txt.gz

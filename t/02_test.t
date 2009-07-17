@@ -23,6 +23,7 @@ isa_ok( $self->{conf}, 'CPANPLUS::Configure' );
 isa_ok( $self->{cpanplus}, 'CPANPLUS::Backend' );
 $self->{conf}->set_conf( cpantest_reporter_args => { transport => 'File', transport_args => [ $dir ], } );
 $self->{conf}->set_conf( md5 => 0 );
+$self->{conf}->set_conf( no_update => 0 );
 $self->test('E/EU/EUNOXS/Foo-Bar-0.01.tar.gz');
 my @reports;
 find( sub { 
