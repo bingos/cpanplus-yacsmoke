@@ -12,7 +12,7 @@ build_requires 'Test::More' => 0.47;
 requires 'YAML::Tiny' => 0;
 requires 'Test::Reporter' => 1.4002;
 requires 'version'  => '0.73';
-requires 'CPANPLUS' => '0.86';
+requires 'CPANPLUS' => '0.88';
 requires 'Module::Load::Conditional' => 0;
 requires 'Params::Check' => 0;
 requires 'SDBM_File' => 0;
@@ -21,8 +21,10 @@ requires 'Regexp::Assemble' => 0.34;
 requires 'Config::IniFiles' => 2.38;
 requires 'Sort::Versions' => 0;
 if ( can_use('Module::Build') ) {
+   requires 'ExtUtils::ParseXS' => 0;
+   requires 'ExtUtils::CBuilder' => 0;
    requires 'Module::Build' => 0.33;
-   requires 'CPANPLUS::Dist::Build' => 0.24;
+   requires 'CPANPLUS::Dist::Build' => 0.36;
 }
 makemaker_args(dist => { PREOP => "git log --name-status --tags > ./Changes.git" });
 clean_files 't/dummy-cpanplus';
