@@ -1,6 +1,9 @@
 CPANPLUS::YACSmoke
 ==================
 
+0.43_01 Mon Jul 20 13:36:49 BST 2009
+    - Expanded the testsuite to actually test things >:)
+
 0.42  Fri Jun 26 22:50:23 BST 2009
     - Fix path to the config file in Dist::YACSmoke, (Vincent Pit)
 
