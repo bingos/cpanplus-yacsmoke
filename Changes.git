@@ -1,3 +1,74 @@
+commit 82b65434f4f68a88f9ac7fcab4dbced310b43bab
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Mon Jul 20 13:40:38 2009 +0100
+
+    Bump the required versions of some of the prereqs
+
+M	Makefile.PL
+
+commit 81f6350367118d8a03f7d103dfd728b94f07571e
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Mon Jul 20 13:38:07 2009 +0100
+
+    Prepare for a CPAN development release
+
+M	Changes
+M	lib/CPANPLUS/Config/YACSmoke.pm
+M	lib/CPANPLUS/Dist/YACSmoke.pm
+M	lib/CPANPLUS/YACSmoke.pm
+
+commit dca1f33f5e66eb1b2d847b43199bf9092a2808d7
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Sat Jul 18 00:23:35 2009 +0100
+
+    Another test this time for 'mark'
+
+M	MANIFEST
+M	lib/CPANPLUS/YACSmoke.pm
+M	t/02_test.t
+A	t/04_mark.t
+
+commit 9ab37b1944ca5d6693c0c550570574aa926ecbd1
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Fri Jul 17 16:30:48 2009 +0100
+
+    More tests.
+
+M	MANIFEST
+M	t/02_test.t
+A	t/03_config_ys.t
+M	t/inc/conf.pl
+
+commit 82c32ac87a25cbf44f333375b9d9643511223057
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Tue Jul 14 16:37:32 2009 +0100
+
+    Added 'test' test
+
+M	MANIFEST
+M	Makefile.PL
+M	lib/CPANPLUS/YACSmoke.pm
+A	t/02_test.t
+M	t/dummy-CPAN/authors/01mailrc.txt.gz
+A	t/dummy-CPAN/authors/id/E/EU/EUNOXS/Foo-Bar-0.01.tar.gz
+M	t/dummy-CPAN/modules/02packages.details.txt.gz
+M	t/inc/conf.pl
+
+commit 96608581723c412bb9156e4886a716f01afd817e
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Wed Jul 1 23:40:06 2009 +0100
+
+    Started to expand the testsuite to actually test things
+
+M	Changes.git
+M	MANIFEST
+A	t/01_new.t
+A	t/dummy-CPAN/authors/01mailrc.txt.gz
+A	t/dummy-CPAN/modules/02packages.details.txt.gz
+A	t/dummy-CPAN/modules/03modlist.data.gz
+A	t/dummy-perl/.hidden
+A	t/inc/conf.pl
+
 commit 083af6bebb1db8552a8601c71d36cfaaf2b939e0
 Author: Chris Williams <chris@bingosnet.co.uk>
 Date:   Fri Jun 26 22:52:26 2009 +0100
