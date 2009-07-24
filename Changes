@@ -1,6 +1,10 @@
 CPANPLUS::YACSmoke
 ==================
 
+0.43_02 Fri Jul 24 15:41:57 BST 2009
+    - Fix setting no_update indexes if there isn't an index already
+    - Remove 'Extracted' messages from test reports
+
 0.43_01 Mon Jul 20 13:36:49 BST 2009
     - Expanded the testsuite to actually test things >:)
 
