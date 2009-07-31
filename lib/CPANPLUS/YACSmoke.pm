@@ -64,6 +64,7 @@ sub new {
 
   $ENV{AUTOMATED_TESTING} = 1;
   $ENV{PERL_MM_USE_DEFAULT} = 1; # despite verbose setting
+  $ENV{PERL_EXTUTILS_AUTOINSTALL} = '--defaultdeps';
 
   my $conf = $nconf || CPANPLUS::Configure->new();
 

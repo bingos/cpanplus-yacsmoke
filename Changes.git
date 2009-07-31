@@ -1,3 +1,25 @@
+commit bb34cdb6c0affa77303883957a3517b729611169
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Fri Jul 24 15:43:50 2009 +0100
+
+    Prepare for another dev release
+
+M	Changes
+M	lib/CPANPLUS/Config/YACSmoke.pm
+M	lib/CPANPLUS/Dist/YACSmoke.pm
+M	lib/CPANPLUS/YACSmoke.pm
+
+commit cd1d7e5bcd906b24aa570b79f0d3b64757d3ebed
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Fri Jul 24 14:35:08 2009 +0100
+
+    More test refinement.
+
+M	Changes.git
+M	lib/CPANPLUS/Dist/YACSmoke.pm
+M	t/02_test.t
+M	t/dummy-CPAN/authors/id/E/EU/EUNOXS/Foo-Bar-0.01.tar.gz
+
 commit 82b65434f4f68a88f9ac7fcab4dbced310b43bab
 Author: Chris Williams <chris@bingosnet.co.uk>
 Date:   Mon Jul 20 13:40:38 2009 +0100
