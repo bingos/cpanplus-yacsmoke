@@ -26,6 +26,7 @@ t/02_test.t
 t/03_config_ys.t
 t/04_mark.t
 t/05_na_detail.t
+t/06_excluded.t
 t/99_pod.t
 t/99_pod_coverage.t
 t/dummy-CPAN/authors/01mailrc.txt.gz
