@@ -1,6 +1,9 @@
 CPANPLUS::YACSmoke
 ==================
 
+0.43_03 Fri Aug 21 11:11:11 BST 2009
+    - Two more testcases for NA detail and excluded dists
+
 0.43_02 Fri Jul 24 15:41:57 BST 2009
     - Fix setting no_update indexes if there isn't an index already
     - Remove 'Extracted' messages from test reports
