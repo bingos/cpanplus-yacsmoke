@@ -1,6 +1,9 @@
 CPANPLUS::YACSmoke
 ==================
 
+0.43_06 Mon Aug 24 19:53:50 BST 2009
+    - Cosmetic change to the PASS test results appending
+
 0.43_05 Mon Aug 24 18:44:06 BST 2009
     - Add PASS test results to the test report as per RT #40247
     - Make sure we only get the very last test results

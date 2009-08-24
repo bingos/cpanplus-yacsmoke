@@ -20,7 +20,7 @@ use Config::IniFiles;
 
 use vars qw($VERSION);
 
-$VERSION = '0.43_05';
+$VERSION = '0.43_06';
 
 use constant DATABASE_FILE => 'cpansmoke.dat';
 use constant CONFIG_FILE   => 'cpansmoke.ini';
@@ -89,7 +89,7 @@ my %throw_away;
         if ( $grade eq GRADE_PASS ) {
 		        my $buffer  = CPANPLUS::Error->stack_as_string;
             my $last = ( split /MAKE TEST passed/, $buffer )[-1];
-            $report .= $last . "\n";
+            $report .= join('', 'MAKE TEST passed', $last, "\n");
 			      last SWITCH;
         }
 		    if ( $grade ne GRADE_PASS and $report =~ /No \'Makefile.PL\' found - attempting to generate one/s ) {
