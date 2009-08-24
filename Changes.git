@@ -1,3 +1,43 @@
+commit fcb8307a7214033fd7cfc0f3669a34e44ab60cce
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Fri Aug 21 11:12:04 2009 +0100
+
+    Prepare for another CPAN dev release
+
+M	Changes
+M	lib/CPANPLUS/Config/YACSmoke.pm
+M	lib/CPANPLUS/Dist/YACSmoke.pm
+M	lib/CPANPLUS/YACSmoke.pm
+
+commit 40a468ab0cc155fe1bdd4c13afabffca107b216b
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Thu Aug 13 15:51:48 2009 +0100
+
+    Added a test for excluded distributions
+
+M	MANIFEST
+A	t/06_excluded.t
+
+commit a6328da945ed2eebe704e2f591bdbaaec0eb7024
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Fri Aug 7 14:50:59 2009 +0100
+
+    Added a test for the detail added to NA test reports case
+
+M	MANIFEST
+A	t/05_na_detail.t
+A	t/dummy-CPAN/authors/id/E/EU/EUNOXS/Fibble-Bar-0.01.tar.gz
+M	t/dummy-CPAN/modules/02packages.details.txt.gz
+
+commit dfd7959a1c0b3f1d1a34e83678aea33fd2f40c52
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Fri Jul 31 12:12:15 2009 +0100
+
+    Added $ENV{PERL_EXTUTILS_AUTOINSTALL} = '--defaultdeps'
+
+M	Changes.git
+M	lib/CPANPLUS/YACSmoke.pm
+
 commit bb34cdb6c0affa77303883957a3517b729611169
 Author: Chris Williams <chris@bingosnet.co.uk>
 Date:   Fri Jul 24 15:43:50 2009 +0100

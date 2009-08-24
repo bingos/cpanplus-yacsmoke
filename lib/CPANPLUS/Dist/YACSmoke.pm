@@ -20,7 +20,7 @@ use Config::IniFiles;
 
 use vars qw($VERSION);
 
-$VERSION = '0.43_03';
+$VERSION = '0.43_04';
 
 use constant DATABASE_FILE => 'cpansmoke.dat';
 use constant CONFIG_FILE   => 'cpansmoke.ini';
@@ -84,8 +84,17 @@ my %throw_away;
 		  my $safe_ver = version->new('0.85_04');
 		  SWITCH: {
 		    if ( $grade ne GRADE_PASS and $report =~ /Will not install prerequisite /s ) {
-			$throw_away{ $mod->package_name . '-' . $mod->package_version } = 'toss';
-			last SWITCH;
+			      $throw_away{ $mod->package_name . '-' . $mod->package_version } = 'toss';
+			      last SWITCH;
+		    }
+        if ( $grade eq GRADE_PASS ) {
+		        my $buffer  = CPANPLUS::Error->stack_as_string;
+            my ($data) = $buffer =~ /(MAKE TEST passed.*?$)/s;
+            $report .= $data . "\n";
+			      last SWITCH;
+        }
+		    if ( $grade ne GRADE_PASS and $report =~ /No \'Makefile.PL\' found - attempting to generate one/s ) {
+			      $throw_away{ $mod->package_name . '-' . $mod->package_version } = 'toss';
 		    }
 		    my $int_ver = $CPANPLUS::Internals::VERSION;
 		    last SWITCH if version->new($int_ver) >= $safe_ver;
@@ -95,9 +104,6 @@ my %throw_away;
 		        my $stage   = TEST_FAIL_STAGE->($buffer);
 		        $report    .= REPORT_MESSAGE_HEADER->( $int_ver, $author );
 		        $report    .= REPORT_MESSAGE_FAIL_HEADER->( $stage, $buffer );
-		    }
-		    if ( $grade ne GRADE_PASS and $report =~ /No \'Makefile.PL\' found - attempting to generate one/s ) {
-			$throw_away{ $mod->package_name . '-' . $mod->package_version } = 'toss';
 		    }
 		  }
 		  $report =~ s/\[MSG\].*may need to build a \'CPANPLUS::Dist::YACSmoke\' package for it as well.*?\n//sg;

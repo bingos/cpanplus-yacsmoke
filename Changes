@@ -1,6 +1,9 @@
 CPANPLUS::YACSmoke
 ==================
 
+0.43_04 
+    - Add PASS test results to the test report as per RT #40247
+
 0.43_03 Fri Aug 21 11:11:11 BST 2009
     - Two more testcases for NA detail and excluded dists
 

@@ -20,12 +20,10 @@ requires 'File::Spec' => 0;
 requires 'Regexp::Assemble' => 0.34;
 requires 'Config::IniFiles' => 2.38;
 requires 'Sort::Versions' => 0;
-if ( can_use('Module::Build') ) {
-   requires 'ExtUtils::ParseXS' => 0;
-   requires 'ExtUtils::CBuilder' => 0;
-   requires 'Module::Build' => 0.33;
-   requires 'CPANPLUS::Dist::Build' => 0.36;
-}
+requires 'ExtUtils::ParseXS' => 0;
+requires 'ExtUtils::CBuilder' => 0;
+requires 'Module::Build' => 0.33;
+requires 'CPANPLUS::Dist::Build' => 0.38;
 makemaker_args(dist => { PREOP => "git log --name-status --tags > ./Changes.git" });
 clean_files 't/dummy-cpanplus';
 auto_provides;

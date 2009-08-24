@@ -27,10 +27,14 @@ t/03_config_ys.t
 t/04_mark.t
 t/05_na_detail.t
 t/06_excluded.t
+t/07_pass_mm.t
+t/08_pass_mb.t
 t/99_pod.t
 t/99_pod_coverage.t
 t/dummy-CPAN/authors/01mailrc.txt.gz
+t/dummy-CPAN/authors/id/E/EU/EUNOXS/Fabble-Bar-0.01.tar.gz
 t/dummy-CPAN/authors/id/E/EU/EUNOXS/Fibble-Bar-0.01.tar.gz
+t/dummy-CPAN/authors/id/E/EU/EUNOXS/Fobble-Bar-0.01.tar.gz
 t/dummy-CPAN/authors/id/E/EU/EUNOXS/Foo-Bar-0.01.tar.gz
 t/dummy-CPAN/modules/02packages.details.txt.gz
 t/dummy-CPAN/modules/03modlist.data.gz
