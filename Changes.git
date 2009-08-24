@@ -1,3 +1,22 @@
+commit 65f60207263f0eff659f7b0a57e8e1276aadc6ff
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Mon Aug 24 15:51:10 2009 +0100
+
+    Added PASS test results to test report as per RT #40247, new tests for such. Made Module::Build and associated modules actual prereqs now.
+
+M	Changes
+M	Changes.git
+M	MANIFEST
+M	Makefile.PL
+M	lib/CPANPLUS/Config/YACSmoke.pm
+M	lib/CPANPLUS/Dist/YACSmoke.pm
+M	lib/CPANPLUS/YACSmoke.pm
+A	t/07_pass_mm.t
+A	t/08_pass_mb.t
+A	t/dummy-CPAN/authors/id/E/EU/EUNOXS/Fabble-Bar-0.01.tar.gz
+A	t/dummy-CPAN/authors/id/E/EU/EUNOXS/Fobble-Bar-0.01.tar.gz
+M	t/dummy-CPAN/modules/02packages.details.txt.gz
+
 commit fcb8307a7214033fd7cfc0f3669a34e44ab60cce
 Author: Chris Williams <chris@bingosnet.co.uk>
 Date:   Fri Aug 21 11:12:04 2009 +0100
