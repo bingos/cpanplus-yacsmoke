@@ -1,3 +1,15 @@
+commit 0775d09089263ae0e27ca83cab7729ad923d0e3e
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Mon Aug 24 19:55:07 2009 +0100
+
+    Cosmetic change to the PASS test results appending
+
+M	Changes
+M	Changes.git
+M	lib/CPANPLUS/Config/YACSmoke.pm
+M	lib/CPANPLUS/Dist/YACSmoke.pm
+M	lib/CPANPLUS/YACSmoke.pm
+
 commit a648cfca2ed7b6b52b81e0bfbcf198bd40f84b03
 Author: Chris Williams <chris@bingosnet.co.uk>
 Date:   Mon Aug 24 18:44:34 2009 +0100

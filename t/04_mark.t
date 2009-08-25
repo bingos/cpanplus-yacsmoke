@@ -9,6 +9,8 @@ use warnings;
 use File::Temp;
 use File::Find;
 use Test::More tests => 16;
+use lib 't/inc';
+use Capture::Tiny qw(capture_merged);
 use_ok('CPANPLUS::YACSmoke');
 
 my $dir = File::Temp::tempdir( CLEANUP => 1 );
@@ -22,8 +24,13 @@ ok( $ENV{$_}, "$_ is set" ) for @env_vars;
 isa_ok( $self->{conf}, 'CPANPLUS::Configure' );
 isa_ok( $self->{cpanplus}, 'CPANPLUS::Backend' );
 $self->{conf}->set_conf( md5 => 0 );
-ok( !defined $self->mark('Foo::Bar'), 'No mark yet' );
+my $mark;
+capture_merged { $mark = $self->mark('Foo::Bar'); };
+ok( !defined $mark, 'No mark yet' );
 foreach my $grade (qw(PASS FAIL NA UNKNOWN)) {
-  is($self->mark('Foo::Bar',$grade),lc $grade,"Setting Foo::Bar to '$grade'");
-  is($self->mark('Foo::Bar'),lc $grade,"Foo::Bar is '$grade'");
+  my ($set,$got);
+  capture_merged { $set = $self->mark('Foo::Bar',$grade); };
+  is($set,lc $grade,"Setting Foo::Bar to '$grade'");
+  capture_merged { $got = $self->mark('Foo::Bar'); };
+  is($got,lc $grade,"Foo::Bar is '$grade'");
 }

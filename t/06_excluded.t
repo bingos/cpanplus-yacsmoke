@@ -9,6 +9,8 @@ use warnings;
 use File::Temp;
 use File::Find;
 use Test::More tests => 8;
+use lib 't/inc';
+use Capture::Tiny qw(capture_merged);
 use_ok('CPANPLUS::YACSmoke');
 
 my $dir = File::Temp::tempdir( CLEANUP => 1 );
@@ -34,5 +36,6 @@ ok( $ENV{$_}, "$_ is set" ) for @env_vars;
 isa_ok( $self->{conf}, 'CPANPLUS::Configure' );
 isa_ok( $self->{cpanplus}, 'CPANPLUS::Backend' );
 $self->{conf}->set_conf( md5 => 0 );
-my @excluded = $self->excluded( 'Foo::Bar' );
+my @excluded;
+capture_merged { @excluded = $self->excluded( 'Foo::Bar' ); };
 ok( ( grep { $_ eq 'Foo-Bar-0.01' } @excluded ), 'Foo-Bar-0.01 is excluded' );

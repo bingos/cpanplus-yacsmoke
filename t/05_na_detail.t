@@ -10,6 +10,8 @@ use File::Spec;
 use File::Temp;
 use File::Find;
 use Test::More tests => 14;
+use lib 't/inc';
+use Capture::Tiny qw(capture_merged);
 use_ok('CPANPLUS::YACSmoke');
 
 my $dir = File::Temp::tempdir( CLEANUP => 1 );
@@ -24,7 +26,7 @@ isa_ok( $self->{conf}, 'CPANPLUS::Configure' );
 isa_ok( $self->{cpanplus}, 'CPANPLUS::Backend' );
 $self->{conf}->set_conf( cpantest_reporter_args => { transport => 'File', transport_args => [ $dir ], } );
 $self->{conf}->set_conf( md5 => 0 );
-$self->test('E/EU/EUNOXS/Fibble-Bar-0.01.tar.gz');
+capture_merged { $self->test('E/EU/EUNOXS/Fibble-Bar-0.01.tar.gz'); };
 my @reports;
 find( sub { 
     push @reports, $_ if -f; 
@@ -41,7 +43,8 @@ ok( $report !~ /\[MSG\] \[[\w: ]+\] Extracted '\S*?'\n/s, 'No extraction message
 ok( $report =~ /\[MSG\] \[[\w: ]+\] Extracted '.*?' to '.*?'\n/s, 'But there is the final extraction message' );
 ok( $report =~ /\[MSG\] \[[\w: ]+\] CPANPLUS is prefering Build.PL\n/s, 'CPANPLUS is prefering Build.PL' );
 ok( $report =~ /\[MSG\] \[[\w: ]+\] Loading YACSmoke database ".*?"\n/s, 'Loading YACSmoke database' );
-ok( $report =~ m!Can\'t locate Bogus/PreReq\.pm!, 'Report contains the result of the tests' );
+ok( $report =~ m!Test Summary Report!, 'Report contains the result of the tests' );
 
-my $grade = $self->mark('Fibble-Bar-0.01');
+my $grade;
+capture_merged { $grade = $self->mark('Fibble-Bar-0.01'); };
 is($grade,'na','Grade was an NA');

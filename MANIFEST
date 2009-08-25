@@ -40,3 +40,4 @@ t/dummy-CPAN/modules/02packages.details.txt.gz
 t/dummy-CPAN/modules/03modlist.data.gz
 t/dummy-perl/.hidden
 t/inc/conf.pl
+t/inc/Capture/Tiny.pm

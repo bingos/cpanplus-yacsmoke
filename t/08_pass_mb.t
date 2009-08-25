@@ -10,6 +10,8 @@ use File::Spec;
 use File::Temp;
 use File::Find;
 use Test::More tests => 11;
+use lib 't/inc';
+use Capture::Tiny qw(capture_merged);
 use_ok('CPANPLUS::YACSmoke');
 
 my $dir = File::Temp::tempdir( CLEANUP => 1 );
@@ -24,7 +26,7 @@ isa_ok( $self->{conf}, 'CPANPLUS::Configure' );
 isa_ok( $self->{cpanplus}, 'CPANPLUS::Backend' );
 $self->{conf}->set_conf( cpantest_reporter_args => { transport => 'File', transport_args => [ $dir ], } );
 $self->{conf}->set_conf( md5 => 0 );
-$self->test('E/EU/EUNOXS/Fabble-Bar-0.01.tar.gz');
+capture_merged { $self->test('E/EU/EUNOXS/Fabble-Bar-0.01.tar.gz'); };
 my @reports;
 find( sub { 
     push @reports, $_ if -f; 
@@ -40,5 +42,6 @@ my $report;
 ok( $report !~ /\[MSG\] \[[\w: ]+\] Extracted '\S*?'\n/s, 'No extraction messages in the report' );
 ok( $report =~ m!All tests successful!, 'Report contains the result of the tests' );
 
-my $grade = $self->mark('Fabble-Bar-0.01');
+my $grade;
+capture_merged { $grade = $self->mark('Fabble-Bar-0.01'); };
 is($grade,'pass','Grade was an PASS');

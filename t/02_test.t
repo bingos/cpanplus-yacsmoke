@@ -10,6 +10,8 @@ use File::Spec;
 use File::Temp;
 use File::Find;
 use Test::More tests => 13;
+use lib 't/inc';
+use Capture::Tiny qw(capture_merged);
 use_ok('CPANPLUS::YACSmoke');
 
 my $dir = File::Temp::tempdir( CLEANUP => 1 );
@@ -24,7 +26,7 @@ isa_ok( $self->{conf}, 'CPANPLUS::Configure' );
 isa_ok( $self->{cpanplus}, 'CPANPLUS::Backend' );
 $self->{conf}->set_conf( cpantest_reporter_args => { transport => 'File', transport_args => [ $dir ], } );
 $self->{conf}->set_conf( md5 => 0 );
-$self->test('E/EU/EUNOXS/Foo-Bar-0.01.tar.gz');
+my $merged_test = capture_merged { $self->test('E/EU/EUNOXS/Foo-Bar-0.01.tar.gz'); };
 my @reports;
 find( sub { 
     push @reports, $_ if -f; 
@@ -42,5 +44,6 @@ ok( $report =~ /\[MSG\] \[[\w: ]+\] Extracted '.*?' to '.*?'\n/s, 'But there is 
 ok( $report =~ /\[MSG\] \[[\w: ]+\] CPANPLUS is prefering Build.PL\n/s, 'CPANPLUS is prefering Build.PL' );
 ok( $report =~ /\[MSG\] \[[\w: ]+\] Loading YACSmoke database ".*?"\n/s, 'Loading YACSmoke database' );
 
-my $grade = $self->mark('Foo-Bar-0.01');
+my $grade;
+my $merged_grade = capture_merged { $grade = $self->mark('Foo-Bar-0.01'); };
 is($grade,'fail','Grade was a FAIL');
