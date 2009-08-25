@@ -1,6 +1,10 @@
 CPANPLUS::YACSmoke
 ==================
 
+0.43_07 Tue Aug 25 18:14:33 BST 2009
+    - Added Capture::Tiny to the testsuite so we can
+      suppress output during testing
+
 0.43_06 Mon Aug 24 19:53:50 BST 2009
     - Cosmetic change to the PASS test results appending
 
