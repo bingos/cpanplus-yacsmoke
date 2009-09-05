@@ -1,6 +1,9 @@
 CPANPLUS::YACSmoke
 ==================
 
+0.44  Sat Sep  5 11:40:10 BST 2009
+    - Bump to a stable release
+
 0.43_07 Tue Aug 25 18:14:33 BST 2009
     - Added Capture::Tiny to the testsuite so we can
       suppress output during testing

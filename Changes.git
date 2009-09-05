@@ -1,3 +1,30 @@
+commit 615a2226a1ab7dd2124dd820097f48ec36cc08a2
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Tue Aug 25 18:15:22 2009 +0100
+
+    Prepare for a CPAN release
+
+M	Changes
+M	lib/CPANPLUS/Config/YACSmoke.pm
+M	lib/CPANPLUS/Dist/YACSmoke.pm
+M	lib/CPANPLUS/YACSmoke.pm
+
+commit a474fd4a000dbc579733e0ad4709ba0951acde02
+Author: Chris Williams <chris@bingosnet.co.uk>
+Date:   Tue Aug 25 18:11:47 2009 +0100
+
+    Added Capture::Tiny to our test suite and configured tests to use capture_merged where applicable
+
+M	Changes.git
+M	MANIFEST
+M	t/02_test.t
+M	t/04_mark.t
+M	t/05_na_detail.t
+M	t/06_excluded.t
+M	t/07_pass_mm.t
+M	t/08_pass_mb.t
+A	t/inc/Capture/Tiny.pm
+
 commit 0775d09089263ae0e27ca83cab7729ad923d0e3e
 Author: Chris Williams <chris@bingosnet.co.uk>
 Date:   Mon Aug 24 19:55:07 2009 +0100
