@@ -1,470 +1,322 @@
-commit 70637c0dc62bf59fbdfd9c42dce4048e72597932
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Sat Sep 5 11:41:03 2009 +0100
+=================================
+2009-10-30 10:10:29 +0000 0.45_01
+=================================
 
-    Bump to a stable release
+  commit f781f58d399f9c4f41e76b0f58e19ccf85262bc3
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Fri Oct 30 10:10:29 2009 +0000
+  
+    Add some logic to Makefile.PL to generate the correct prereqs for
+    enabling CPAN Testing support in the currently available version of
+    CPANPLUS 
 
-M	Changes
-M	Changes.git
-M	lib/CPANPLUS/Config/YACSmoke.pm
-M	lib/CPANPLUS/Dist/YACSmoke.pm
-M	lib/CPANPLUS/YACSmoke.pm
+==============================
+2009-09-05 11:41:03 +0100 0.44
+==============================
 
-commit 615a2226a1ab7dd2124dd820097f48ec36cc08a2
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Tue Aug 25 18:15:22 2009 +0100
+  commit 70637c0dc62bf59fbdfd9c42dce4048e72597932
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Sat Sep 5 11:41:03 2009 +0100
+  
+    Bump to a stable release 
 
+=================================
+2009-08-25 18:15:22 +0100 0.43_07
+=================================
+
+  commit 615a2226a1ab7dd2124dd820097f48ec36cc08a2
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Tue Aug 25 18:15:22 2009 +0100
+  
     Prepare for a CPAN release
 
-M	Changes
-M	lib/CPANPLUS/Config/YACSmoke.pm
-M	lib/CPANPLUS/Dist/YACSmoke.pm
-M	lib/CPANPLUS/YACSmoke.pm
+  commit a474fd4a000dbc579733e0ad4709ba0951acde02
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Tue Aug 25 18:11:47 2009 +0100
+  
+    Added Capture::Tiny to our test suite and configured tests to use
+    capture_merged where applicable 
 
-commit a474fd4a000dbc579733e0ad4709ba0951acde02
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Tue Aug 25 18:11:47 2009 +0100
+=================================
+2009-08-24 19:55:07 +0100 0.43_06
+=================================
 
-    Added Capture::Tiny to our test suite and configured tests to use capture_merged where applicable
+  commit 0775d09089263ae0e27ca83cab7729ad923d0e3e
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Mon Aug 24 19:55:07 2009 +0100
+  
+    Cosmetic change to the PASS test results appending 
 
-M	Changes.git
-M	MANIFEST
-M	t/02_test.t
-M	t/04_mark.t
-M	t/05_na_detail.t
-M	t/06_excluded.t
-M	t/07_pass_mm.t
-M	t/08_pass_mb.t
-A	t/inc/Capture/Tiny.pm
+=================================
+2009-08-24 18:44:34 +0100 0.43_05
+=================================
 
-commit 0775d09089263ae0e27ca83cab7729ad923d0e3e
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Mon Aug 24 19:55:07 2009 +0100
+  commit a648cfca2ed7b6b52b81e0bfbcf198bd40f84b03
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Mon Aug 24 18:44:34 2009 +0100
+  
+    Fixed the inclusion of PASS test results in the test report. The
+    regex was a little bit greedy, switched to using split 
 
-    Cosmetic change to the PASS test results appending
+=================================
+2009-08-24 15:51:10 +0100 0.43_04
+=================================
 
-M	Changes
-M	Changes.git
-M	lib/CPANPLUS/Config/YACSmoke.pm
-M	lib/CPANPLUS/Dist/YACSmoke.pm
-M	lib/CPANPLUS/YACSmoke.pm
+  commit 65f60207263f0eff659f7b0a57e8e1276aadc6ff
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Mon Aug 24 15:51:10 2009 +0100
+  
+    Added PASS test results to test report as per RT #40247, new tests
+    for such. Made Module::Build and associated modules actual prereqs
+    now. 
 
-commit a648cfca2ed7b6b52b81e0bfbcf198bd40f84b03
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Mon Aug 24 18:44:34 2009 +0100
+=================================
+2009-08-21 11:12:04 +0100 0.43_03
+=================================
 
-    Fixed the inclusion of PASS test results in the test report. The regex was a little bit greedy, switched to using split
-
-M	Changes
-M	Changes.git
-M	lib/CPANPLUS/Config/YACSmoke.pm
-M	lib/CPANPLUS/Dist/YACSmoke.pm
-M	lib/CPANPLUS/YACSmoke.pm
-
-commit 65f60207263f0eff659f7b0a57e8e1276aadc6ff
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Mon Aug 24 15:51:10 2009 +0100
-
-    Added PASS test results to test report as per RT #40247, new tests for such. Made Module::Build and associated modules actual prereqs now.
-
-M	Changes
-M	Changes.git
-M	MANIFEST
-M	Makefile.PL
-M	lib/CPANPLUS/Config/YACSmoke.pm
-M	lib/CPANPLUS/Dist/YACSmoke.pm
-M	lib/CPANPLUS/YACSmoke.pm
-A	t/07_pass_mm.t
-A	t/08_pass_mb.t
-A	t/dummy-CPAN/authors/id/E/EU/EUNOXS/Fabble-Bar-0.01.tar.gz
-A	t/dummy-CPAN/authors/id/E/EU/EUNOXS/Fobble-Bar-0.01.tar.gz
-M	t/dummy-CPAN/modules/02packages.details.txt.gz
-
-commit fcb8307a7214033fd7cfc0f3669a34e44ab60cce
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Fri Aug 21 11:12:04 2009 +0100
-
+  commit fcb8307a7214033fd7cfc0f3669a34e44ab60cce
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Fri Aug 21 11:12:04 2009 +0100
+  
     Prepare for another CPAN dev release
 
-M	Changes
-M	lib/CPANPLUS/Config/YACSmoke.pm
-M	lib/CPANPLUS/Dist/YACSmoke.pm
-M	lib/CPANPLUS/YACSmoke.pm
-
-commit 40a468ab0cc155fe1bdd4c13afabffca107b216b
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Thu Aug 13 15:51:48 2009 +0100
-
+  commit 40a468ab0cc155fe1bdd4c13afabffca107b216b
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Thu Aug 13 15:51:48 2009 +0100
+  
     Added a test for excluded distributions
 
-M	MANIFEST
-A	t/06_excluded.t
-
-commit a6328da945ed2eebe704e2f591bdbaaec0eb7024
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Fri Aug 7 14:50:59 2009 +0100
-
+  commit a6328da945ed2eebe704e2f591bdbaaec0eb7024
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Fri Aug 7 14:50:59 2009 +0100
+  
     Added a test for the detail added to NA test reports case
 
-M	MANIFEST
-A	t/05_na_detail.t
-A	t/dummy-CPAN/authors/id/E/EU/EUNOXS/Fibble-Bar-0.01.tar.gz
-M	t/dummy-CPAN/modules/02packages.details.txt.gz
+  commit dfd7959a1c0b3f1d1a34e83678aea33fd2f40c52
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Fri Jul 31 12:12:15 2009 +0100
+  
+    Added $ENV{PERL_EXTUTILS_AUTOINSTALL} = '--defaultdeps' 
 
-commit dfd7959a1c0b3f1d1a34e83678aea33fd2f40c52
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Fri Jul 31 12:12:15 2009 +0100
+=================================
+2009-07-24 15:43:50 +0100 0.43_02
+=================================
 
-    Added $ENV{PERL_EXTUTILS_AUTOINSTALL} = '--defaultdeps'
-
-M	Changes.git
-M	lib/CPANPLUS/YACSmoke.pm
-
-commit bb34cdb6c0affa77303883957a3517b729611169
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Fri Jul 24 15:43:50 2009 +0100
-
+  commit bb34cdb6c0affa77303883957a3517b729611169
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Fri Jul 24 15:43:50 2009 +0100
+  
     Prepare for another dev release
 
-M	Changes
-M	lib/CPANPLUS/Config/YACSmoke.pm
-M	lib/CPANPLUS/Dist/YACSmoke.pm
-M	lib/CPANPLUS/YACSmoke.pm
+  commit cd1d7e5bcd906b24aa570b79f0d3b64757d3ebed
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Fri Jul 24 14:35:08 2009 +0100
+  
+    More test refinement. 
 
-commit cd1d7e5bcd906b24aa570b79f0d3b64757d3ebed
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Fri Jul 24 14:35:08 2009 +0100
+=================================
+2009-07-20 13:40:38 +0100 0.43_01
+=================================
 
-    More test refinement.
-
-M	Changes.git
-M	lib/CPANPLUS/Dist/YACSmoke.pm
-M	t/02_test.t
-M	t/dummy-CPAN/authors/id/E/EU/EUNOXS/Foo-Bar-0.01.tar.gz
-
-commit 82b65434f4f68a88f9ac7fcab4dbced310b43bab
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Mon Jul 20 13:40:38 2009 +0100
-
+  commit 82b65434f4f68a88f9ac7fcab4dbced310b43bab
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Mon Jul 20 13:40:38 2009 +0100
+  
     Bump the required versions of some of the prereqs
 
-M	Makefile.PL
-
-commit 81f6350367118d8a03f7d103dfd728b94f07571e
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Mon Jul 20 13:38:07 2009 +0100
-
+  commit 81f6350367118d8a03f7d103dfd728b94f07571e
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Mon Jul 20 13:38:07 2009 +0100
+  
     Prepare for a CPAN development release
 
-M	Changes
-M	lib/CPANPLUS/Config/YACSmoke.pm
-M	lib/CPANPLUS/Dist/YACSmoke.pm
-M	lib/CPANPLUS/YACSmoke.pm
-
-commit dca1f33f5e66eb1b2d847b43199bf9092a2808d7
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Sat Jul 18 00:23:35 2009 +0100
-
+  commit dca1f33f5e66eb1b2d847b43199bf9092a2808d7
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Sat Jul 18 00:23:35 2009 +0100
+  
     Another test this time for 'mark'
 
-M	MANIFEST
-M	lib/CPANPLUS/YACSmoke.pm
-M	t/02_test.t
-A	t/04_mark.t
-
-commit 9ab37b1944ca5d6693c0c550570574aa926ecbd1
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Fri Jul 17 16:30:48 2009 +0100
-
+  commit 9ab37b1944ca5d6693c0c550570574aa926ecbd1
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Fri Jul 17 16:30:48 2009 +0100
+  
     More tests.
 
-M	MANIFEST
-M	t/02_test.t
-A	t/03_config_ys.t
-M	t/inc/conf.pl
-
-commit 82c32ac87a25cbf44f333375b9d9643511223057
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Tue Jul 14 16:37:32 2009 +0100
-
+  commit 82c32ac87a25cbf44f333375b9d9643511223057
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Tue Jul 14 16:37:32 2009 +0100
+  
     Added 'test' test
 
-M	MANIFEST
-M	Makefile.PL
-M	lib/CPANPLUS/YACSmoke.pm
-A	t/02_test.t
-M	t/dummy-CPAN/authors/01mailrc.txt.gz
-A	t/dummy-CPAN/authors/id/E/EU/EUNOXS/Foo-Bar-0.01.tar.gz
-M	t/dummy-CPAN/modules/02packages.details.txt.gz
-M	t/inc/conf.pl
+  commit 96608581723c412bb9156e4886a716f01afd817e
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Wed Jul 1 23:40:06 2009 +0100
+  
+    Started to expand the testsuite to actually test things 
 
-commit 96608581723c412bb9156e4886a716f01afd817e
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Wed Jul 1 23:40:06 2009 +0100
+==============================
+2009-06-26 22:52:26 +0100 0.42
+==============================
 
-    Started to expand the testsuite to actually test things
-
-M	Changes.git
-M	MANIFEST
-A	t/01_new.t
-A	t/dummy-CPAN/authors/01mailrc.txt.gz
-A	t/dummy-CPAN/modules/02packages.details.txt.gz
-A	t/dummy-CPAN/modules/03modlist.data.gz
-A	t/dummy-perl/.hidden
-A	t/inc/conf.pl
-
-commit 083af6bebb1db8552a8601c71d36cfaaf2b939e0
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Fri Jun 26 22:52:26 2009 +0100
-
+  commit 083af6bebb1db8552a8601c71d36cfaaf2b939e0
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Fri Jun 26 22:52:26 2009 +0100
+  
     Prepare for release
 
-M	Changes
-M	lib/CPANPLUS/Config/YACSmoke.pm
-M	lib/CPANPLUS/Dist/YACSmoke.pm
-M	lib/CPANPLUS/YACSmoke.pm
-
-commit b5522b93cecf1286d6462ac39b69982578ed8f42
-Merge: 5ef0a59 0433201
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Fri Jun 26 18:45:01 2009 +0100
-
+  commit b5522b93cecf1286d6462ac39b69982578ed8f42
+  Merge: 5ef0a59 0433201
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Fri Jun 26 18:45:01 2009 +0100
+  
     Merge branch 'master' of git@github.com:bingos/cpanplus-yacsmoke
 
-commit 5ef0a59101871ee767dd2e486843134977325338
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Fri Jun 26 18:44:11 2009 +0100
-
+  commit 5ef0a59101871ee767dd2e486843134977325338
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Fri Jun 26 18:44:11 2009 +0100
+  
     Update Changes.git
 
-M	Changes.git
-
-commit 0433201f2ffb5f748aefb777ec631841e3204b77
-Author: Vincent Pit <vince@profvince.com>
-Date:   Sat Jun 27 00:32:11 2009 +0800
-
+  commit 0433201f2ffb5f748aefb777ec631841e3204b77
+  Author: Vincent Pit <vince@profvince.com>
+  Date:   Sat Jun 27 00:32:11 2009 +0800
+  
     Fix path to the config file
-    
-    $conf->get_conf('base') should already contain '.cpanplus' at its end.
-    
-    Signed-off-by: Chris Williams <chris@bingosnet.co.uk>
 
-M	lib/CPANPLUS/Dist/YACSmoke.pm
+    $conf->get_conf('base') should already contain '.cpanplus' at its
+    end.
 
-commit 89618ce3043d1724398d2554f49010f124eb31ed
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Fri Jun 12 00:18:59 2009 +0100
+    Signed-off-by: Chris Williams <chris@bingosnet.co.uk> 
 
-    Added gmail.com to list of addresses we don't set MAILDOMAIN to, reported by Justin Hunter (arcanez)
+==============================
+2009-06-12 00:18:59 +0100 0.40
+==============================
 
-M	Changes
-M	Changes.git
-M	lib/CPANPLUS/Config/YACSmoke.pm
-M	lib/CPANPLUS/Dist/YACSmoke.pm
-M	lib/CPANPLUS/YACSmoke.pm
+  commit 89618ce3043d1724398d2554f49010f124eb31ed
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Fri Jun 12 00:18:59 2009 +0100
+  
+    Added gmail.com to list of addresses we don't set MAILDOMAIN to,
+    reported by Justin Hunter (arcanez) 
 
-commit 53113a50780f24ce699c091fa90766f48d9c734d
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Tue Jun 9 15:22:22 2009 +0100
+==============================
+2009-06-09 15:22:22 +0100 0.38
+==============================
 
-    Forgot to make the various modules actually use get_conf('base') to find the configuration files now
+  commit 53113a50780f24ce699c091fa90766f48d9c734d
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Tue Jun 9 15:22:22 2009 +0100
+  
+    Forgot to make the various modules actually use get_conf('base') to
+    find the configuration files now 
 
-M	Changes
-M	Changes.git
-M	lib/CPANPLUS/Config/YACSmoke.pm
-M	lib/CPANPLUS/Dist/YACSmoke.pm
-M	lib/CPANPLUS/YACSmoke.pm
+==============================
+2009-06-09 14:55:58 +0100 0.36
+==============================
 
-commit ee2253b05e426c32f853bc58354cb40366578acf
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Tue Jun 9 14:55:58 2009 +0100
-
+  commit ee2253b05e426c32f853bc58354cb40366578acf
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Tue Jun 9 14:55:58 2009 +0100
+  
     Update changes
 
-M	Changes
-
-commit f605e91810b19360737931e3f79cde59b33ed4fd
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Tue Jun 9 14:53:28 2009 +0100
-
+  commit f605e91810b19360737931e3f79cde59b33ed4fd
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Tue Jun 9 14:53:28 2009 +0100
+  
     Updated the yactool and made minor adjustments to the other modules.
 
-M	MANIFEST
-M	Makefile.PL
-A	bin/yactool
-M	lib/CPANPLUS/Config/YACSmoke.pm
-M	lib/CPANPLUS/Dist/YACSmoke.pm
-M	lib/CPANPLUS/YACSmoke.pm
-M	t/00_use.t
+  commit 354650adf6cd4c2e828ba0536766c5e508302adf
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Thu May 7 22:56:21 2009 +0100
+  
+    AutoLicense and githubmeta. Added the CPANPLUS::Config sub-class 
 
-commit 354650adf6cd4c2e828ba0536766c5e508302adf
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Thu May 7 22:56:21 2009 +0100
+==============================
+2009-04-26 21:44:47 +0100 0.34
+==============================
 
-    AutoLicense and githubmeta. Added the CPANPLUS::Config sub-class
+  commit 5c2db919dbafa94d84a4419322a6350d6aea39c0
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Sun Apr 26 21:44:47 2009 +0100
+  
+    CPANPLUS 0.86 is out, so we can set that as a prereq and make a
+    stable release. Hurrah. 
 
-M	Changes.git
-D	LICENSE
-M	MANIFEST
-D	MANIFEST.SKIP
-M	Makefile.PL
-A	lib/CPANPLUS/Config/YACSmoke.pm
+=================================
+2009-04-17 14:08:29 +0100 0.33_04
+=================================
 
-commit 5c2db919dbafa94d84a4419322a6350d6aea39c0
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Sun Apr 26 21:44:47 2009 +0100
+  commit 19fb5f3f0587a365f83c84eb454b1170e2d2efd2
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Fri Apr 17 14:08:29 2009 +0100
+  
+    Remove the $ENV{PERL5_CPANPLUS_VERBOSE} from YACSmoke, causes
+    problems with CPANPLUS testsuite and is unnecessary. 
 
-    CPANPLUS 0.86 is out, so we can set that as a prereq and make a stable release. Hurrah.
+=================================
+2009-04-07 21:02:13 +0100 0.33_03
+=================================
 
-M	Changes
-M	Changes.git
-M	Makefile.PL
-M	lib/CPANPLUS/Dist/YACSmoke.pm
-M	lib/CPANPLUS/YACSmoke.pm
-
-commit 19fb5f3f0587a365f83c84eb454b1170e2d2efd2
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Fri Apr 17 14:08:29 2009 +0100
-
-    Remove the $ENV{PERL5_CPANPLUS_VERBOSE} from YACSmoke, causes problems with CPANPLUS testsuite and is unnecessary.
-
-M	Changes
-M	Changes.git
-M	lib/CPANPLUS/Dist/YACSmoke.pm
-M	lib/CPANPLUS/YACSmoke.pm
-
-commit 2c733f5860af53c67d4ae4c085009aa7ce957992
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Tue Apr 7 21:02:13 2009 +0100
-
+  commit 2c733f5860af53c67d4ae4c085009aa7ce957992
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Tue Apr 7 21:02:13 2009 +0100
+  
     Remember to actually update the version numbers
 
-M	lib/CPANPLUS/Dist/YACSmoke.pm
-M	lib/CPANPLUS/YACSmoke.pm
-
-commit 1d8b75913f700f2f423795df31589b69b5a275bf
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Tue Apr 7 21:01:16 2009 +0100
-
+  commit 1d8b75913f700f2f423795df31589b69b5a275bf
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Tue Apr 7 21:01:16 2009 +0100
+  
     Update changes
 
-M	Changes
+  commit 8d41c6d4ad295e761ec8d6c802f979ef7610ddb0
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Tue Apr 7 21:00:06 2009 +0100
+  
+    Make auto_set_repository() only run at author-time 
 
-commit 8d41c6d4ad295e761ec8d6c802f979ef7610ddb0
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Tue Apr 7 21:00:06 2009 +0100
+=================================
+2009-04-01 22:47:16 +0100 0.33_02
+=================================
 
-    Make auto_set_repository() only run at author-time
-
-M	Changes.git
-M	MANIFEST
-A	MANIFEST.SKIP
-M	Makefile.PL
-
-commit 8aeb6c416a1141bc1150dbdfb3dba1a3ad65dea0
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Wed Apr 1 22:47:16 2009 +0100
-
+  commit 8aeb6c416a1141bc1150dbdfb3dba1a3ad65dea0
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Wed Apr 1 22:47:16 2009 +0100
+  
     Prep for CPAN dev release
 
-M	Changes
+  commit c35b1eadbf27780683d9b884b9b6d9576c4f9671
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Tue Mar 31 23:40:18 2009 +0100
+  
+    Think we have to mke sure that the prereqs get resolved recursively.
+    Down and down the rabbit hole. 
 
-commit c35b1eadbf27780683d9b884b9b6d9576c4f9671
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Tue Mar 31 23:40:18 2009 +0100
+=================================
+2009-03-30 11:55:22 +0100 0.33_01
+=================================
 
-    Think we have to mke sure that the prereqs get resolved recursively. Down and down the rabbit hole.
+  commit de15746243334aefb63c1d5a7f2e38317c14705b
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Mon Mar 30 11:55:22 2009 +0100
+  
+    Prepped for CPAN release, added M::I::Repository to Makefile.PL for
+    repo meta.
 
-M	Changes.git
-M	lib/CPANPLUS/Dist/YACSmoke.pm
-M	lib/CPANPLUS/YACSmoke.pm
+  commit d9ce2a26b7153a47f3db10a87788f54bcd1b5c6f
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Sun Mar 29 22:39:47 2009 +0100
+  
+    Rolled back 'prepare' stuff and saving of .yml state, this will be
+    dealt with by save_state in CPANPLUS
 
-commit de15746243334aefb63c1d5a7f2e38317c14705b
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Mon Mar 30 11:55:22 2009 +0100
+  commit ff6c167b722f5029d78ce969a3fc7714264a9b16
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Wed Mar 18 00:08:59 2009 +0000
+  
+    A few minor alterations to the format of the Changes.git file 
 
-    Prepped for CPAN release, added M::I::Repository to Makefile.PL for repo meta.
-
-M	Changes
-M	MANIFEST
-M	Makefile.PL
-
-commit d9ce2a26b7153a47f3db10a87788f54bcd1b5c6f
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Sun Mar 29 22:39:47 2009 +0100
-
-    Rolled back 'prepare' stuff and saving of .yml state, this will be dealt with by save_state in CPANPLUS
-
-M	lib/CPANPLUS/Dist/YACSmoke.pm
-M	lib/CPANPLUS/YACSmoke.pm
-
-commit ff6c167b722f5029d78ce969a3fc7714264a9b16
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Wed Mar 18 00:08:59 2009 +0000
-
-    A few minor alterations to the format of the Changes.git file
-
-M	Changes.git
-M	MANIFEST
-M	Makefile.PL
-
-commit b1bde0028fd87289fe2212d9a76ae7482f5ee1ff
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Wed Mar 18 00:01:28 2009 +0000
-
-    bump for release
-
-M	Changes
-
-commit 19b6c7e6e2f6f1864124a55ea9c5a4f0c1fdbcff
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Tue Mar 17 23:02:44 2009 +0000
-
-    Added distop to generate Changes.git file
-
-A	Changes.git
-M	Makefile.PL
-
-commit 028469d2336dab8f63c624f8f9a1bbf6adf0ca5a
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Tue Mar 17 15:45:48 2009 +0000
-
-    Added in 'configure_requires' support, stolen from CP::D::MM and CP::D::Build.
-
-M	Makefile.PL
-M	lib/CPANPLUS/Dist/YACSmoke.pm
-M	lib/CPANPLUS/YACSmoke.pm
-
-commit 432f2f642e5eece2d0879beb4b759b921cdb3382
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Tue Mar 17 12:09:28 2009 +0000
-
-    Fixed crufty 'require Module::Build' check in Makefile.PL to use can_use() from Module::Install instead
-
-M	Makefile.PL
-M	lib/CPANPLUS/Dist/YACSmoke.pm
-
-commit 068f9fa205e7be33d8ba9a62e7b67a13fe747592
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Tue Mar 17 11:25:06 2009 +0000
-
-    Updated required versions of Module::Build and CPANPLUS::Dist::Build
-
-M	Makefile.PL
-
-commit d0ecdc4332d42fa649925f10476d5c21c2b573ca
-Author: Chris Williams <chris@bingosnet.co.uk>
-Date:   Tue Mar 17 11:23:16 2009 +0000
-
-    Initial git commit
-
-A	Changes
-A	LICENSE
-A	MANIFEST
-A	Makefile.PL
-A	README
-A	lib/CPANPLUS/Dist/YACSmoke.pm
-A	lib/CPANPLUS/YACSmoke.pm
-A	t/00_use.t
-A	t/99_pod.t
-A	t/99_pod_coverage.t
+==============
+End of Excerpt
+==============

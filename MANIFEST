@@ -41,3 +41,4 @@ t/dummy-CPAN/modules/03modlist.data.gz
 t/dummy-perl/.hidden
 t/inc/conf.pl
 t/inc/Capture/Tiny.pm
+tools/git-log.pl
