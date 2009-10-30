@@ -8,9 +8,17 @@ abstract_from 'lib/CPANPLUS/YACSmoke.pm';
 license 'perl';
 auto_license holder => 'Chris Williams, Jos Boumans, Robert Rothenberg and Barbie';
 perl_version '5.006';
+configure_requires 'CPANPLUS' => 0.88;
 build_requires 'Test::More' => 0.47;
-requires 'YAML::Tiny' => 0;
-requires 'Test::Reporter' => 1.4002;
+#requires 'YAML::Tiny' => 0;
+#requires 'Test::Reporter' => 1.4002;
+if ( can_use('CPANPLUS', 0.88 ) ) {
+   require CPANPLUS::Backend;
+   require CPANPLUS::Selfupdate;
+   my $href = 
+      CPANPLUS::Selfupdate->new(CPANPLUS::Backend->new())->modules_for_feature('cpantest',1);
+   requires $_ => $href->{$_} for keys %$href;
+}
 requires 'version'  => '0.73';
 requires 'CPANPLUS' => '0.88';
 requires 'Module::Load::Conditional' => 0;
@@ -24,7 +32,7 @@ requires 'ExtUtils::ParseXS' => 0;
 requires 'ExtUtils::CBuilder' => 0;
 requires 'Module::Build' => 0.33;
 requires 'CPANPLUS::Dist::Build' => 0.38;
-makemaker_args(dist => { PREOP => "git log --name-status --tags > ./Changes.git" });
+makemaker_args(dist => { PREOP => "$^X ./tools/git-log.pl > ./Changes" });
 clean_files 't/dummy-cpanplus';
 auto_provides;
 githubmeta;

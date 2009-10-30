@@ -1,6 +1,6 @@
 bin/yactool
 Changes
-Changes.git
+Changes.old
 inc/Module/Install.pm
 inc/Module/Install/AutoLicense.pm
 inc/Module/Install/Base.pm
