@@ -1,3 +1,19 @@
+==============================
+2009-11-16 23:19:55 +0000 0.46
+==============================
+
+  commit 8fd79d59002db6d288287db8a241a02723dbad3e
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Mon Nov 16 23:19:55 2009 +0000
+  
+    Bump to stable release
+
+  commit 74afe7e3c06c359950d812633303eb6fb66c36e3
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Fri Oct 30 10:19:03 2009 +0000
+  
+    Added dngor's git-log script to the MANIFEST 
+
 =================================
 2009-10-30 10:10:29 +0000 0.45_01
 =================================

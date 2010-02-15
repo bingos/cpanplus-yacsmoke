@@ -10,8 +10,6 @@ auto_license holder => 'Chris Williams, Jos Boumans, Robert Rothenberg and Barbi
 perl_version '5.006';
 configure_requires 'CPANPLUS' => 0.88;
 build_requires 'Test::More' => 0.47;
-#requires 'YAML::Tiny' => 0;
-#requires 'Test::Reporter' => 1.4002;
 if ( can_use('CPANPLUS', 0.88 ) ) {
    require CPANPLUS::Backend;
    require CPANPLUS::Selfupdate;
