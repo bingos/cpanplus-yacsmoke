@@ -1,7 +1,7 @@
 #!perl
 use strict;
 use warnings;
-use CPANPLUS::YACSmoke;
+use CPANPLUS::YACSmoke qw(:all);
 use Pod::Usage;
 use Getopt::Long;
 

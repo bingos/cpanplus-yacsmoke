@@ -35,7 +35,7 @@ our %EXPORT_TAGS = (
 our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 our @EXPORT    = ( @{ $EXPORT_TAGS{'default'} } );
 
-$VERSION = '0.48';
+$VERSION = '0.50';
 
 {
   my %Checked;
@@ -303,8 +303,9 @@ sub flush {
   my $param = shift || 'all';
   my %dists;
 
-  opendir(DIR, $self->_get_build_dir());
-  while(my $dir = readdir(DIR)) {
+  my $build_dir = $self->_get_build_dir();
+  opendir(my $DIR, $build_dir);
+  while(my $dir = readdir($DIR)) {
 	next if $dir =~ /^\.+$/;
 
 	if($param eq 'old') {
@@ -312,16 +313,16 @@ sub flush {
 		$dists{$1}->{$2} = "$dir";
 	} 
 	else {
-		rmtree($dir);
+		rmtree(catfile($build_dir,$dir));
 		msg("'$dir' flushed");
 	}
   }
-  closedir(DIR);
+  closedir($DIR);
 
   if($param eq 'old') {
 	for my $dist (keys %dists) {
 	  for(sort { versioncmp($a, $b) } keys %{$dists{$dist}}) {
-	    rmtree($dists{$dist}->{$_});
+	    rmtree(catfile($build_dir,$dists{$dist}->{$_}));
 		msg("'$dists{$dist}->{$_}' flushed");
 	  }
 	}

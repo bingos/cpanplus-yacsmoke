@@ -1,4 +1,20 @@
 ==============================
+2010-02-15 13:42:03 +0000 0.48
+==============================
+
+  commit ee2364e79517d510cdcc01ccdb8a26ae25a0c998
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Mon Feb 15 13:42:03 2010 +0000
+  
+    Version bump
+
+  commit 45f73258e5ebf255f765cd785286e2eeddf19bee
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Mon Feb 15 13:37:50 2010 +0000
+  
+    Updated tests with TODO blocks until we can sort out CPANPLUS issues. 
+
+==============================
 2009-11-16 23:19:55 +0000 0.46
 ==============================
 
