@@ -35,7 +35,7 @@ our %EXPORT_TAGS = (
 our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 our @EXPORT    = ( @{ $EXPORT_TAGS{'default'} } );
 
-$VERSION = '0.50';
+$VERSION = '0.52';
 
 {
   my %Checked;
@@ -301,32 +301,30 @@ sub flush {
   $self->_connect_db();
 
   my $param = shift || 'all';
-  my %dists;
 
   my $build_dir = $self->_get_build_dir();
-  opendir(my $DIR, $build_dir);
-  while(my $dir = readdir($DIR)) {
-	next if $dir =~ /^\.+$/;
 
-	if($param eq 'old') {
-		$dir =~ /(.*)-(.+)/;
-		$dists{$1}->{$2} = "$dir";
-	} 
-	else {
-		rmtree(catfile($build_dir,$dir));
-		msg("'$dir' flushed");
-	}
-  }
-  closedir($DIR);
-
-  if($param eq 'old') {
-	for my $dist (keys %dists) {
-	  for(sort { versioncmp($a, $b) } keys %{$dists{$dist}}) {
-	    rmtree(catfile($build_dir,$dists{$dist}->{$_}));
-		msg("'$dists{$dist}->{$_}' flushed");
+  if ( $param eq 'old' ) {
+    my %dists;
+    opendir(my $DIR, $build_dir);
+    while(my $dir = readdir($DIR)) {
+	    next if $dir =~ /^\.+$/;
+		  $dir =~ /(.*)-(.+)/;
+		  $dists{$1}->{$2} = "$dir";
+	  } 
+    closedir($DIR);
+	  for my $dist (keys %dists) {
+	    for(sort { versioncmp($a, $b) } keys %{$dists{$dist}}) {
+	      rmtree(catfile($build_dir,$dists{$dist}->{$_}));
+		    msg("'$dists{$dist}->{$_}' flushed");
+	    }
 	  }
-	}
   }
+	else {
+		msg("Flushing '$build_dir'");
+		rmtree($build_dir);
+		msg("Flushed '$build_dir'");
+	}
 
   $self->_disconnect_db();
   return 1;
