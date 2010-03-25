@@ -11,6 +11,7 @@ inc/Module/Install/Makefile.pm
 inc/Module/Install/Metadata.pm
 inc/Module/Install/Scripts.pm
 inc/Module/Install/Win32.pm
+inc/Module/Install/With.pm
 inc/Module/Install/WriteAll.pm
 lib/CPANPLUS/Config/YACSmoke.pm
 lib/CPANPLUS/Dist/YACSmoke.pm
@@ -39,6 +40,6 @@ t/dummy-CPAN/authors/id/E/EU/EUNOXS/Foo-Bar-0.01.tar.gz
 t/dummy-CPAN/modules/02packages.details.txt.gz
 t/dummy-CPAN/modules/03modlist.data.gz
 t/dummy-perl/.hidden
-t/inc/conf.pl
 t/inc/Capture/Tiny.pm
+t/inc/conf.pl
 tools/git-log.pl

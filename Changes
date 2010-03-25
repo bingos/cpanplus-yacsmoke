@@ -1,4 +1,16 @@
 ==============================
+2010-02-18 09:26:27 +0000 0.52
+==============================
+
+  commit 3324b465162f5d0a301b56ecdf3f263f923016a8
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Thu Feb 18 09:26:27 2010 +0000
+  
+    Refactored flush all so that it just removes the build directory
+    instead of slowly interating through the sub-directories removing one
+    at a time. 
+
+==============================
 2010-02-16 16:48:27 +0000 0.50
 ==============================
 

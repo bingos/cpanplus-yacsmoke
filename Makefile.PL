@@ -30,6 +30,7 @@ requires 'ExtUtils::ParseXS' => 0;
 requires 'ExtUtils::CBuilder' => 0;
 requires 'Module::Build' => 0.33;
 requires 'CPANPLUS::Dist::Build' => 0.38;
+requires 'IPC::Run' => 0 if win32;
 makemaker_args(dist => { PREOP => "$^X ./tools/git-log.pl > ./Changes" });
 clean_files 't/dummy-cpanplus';
 auto_provides;
