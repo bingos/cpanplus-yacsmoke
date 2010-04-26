@@ -1,4 +1,15 @@
 ==============================
+2010-03-25 10:12:40 +0000 0.54
+==============================
+
+  commit d2b2be721d5bd1b48237e71844e6ce74b5856069
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Thu Mar 25 10:12:40 2010 +0000
+  
+    Added IPC::Run as a prereq if on MSWin32. It is required by CPANPLUS
+    for capture support. 
+
+==============================
 2010-02-18 09:26:27 +0000 0.52
 ==============================
 

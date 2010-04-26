@@ -35,7 +35,7 @@ our %EXPORT_TAGS = (
 our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 our @EXPORT    = ( @{ $EXPORT_TAGS{'default'} } );
 
-$VERSION = '0.54';
+$VERSION = '0.56';
 
 {
   my %Checked;
@@ -340,7 +340,7 @@ sub _is_excluded_dist {
 sub _download_list {
   my $self  = shift;
 
-  my $path  = catdir( CPANPLUS::Internals::Utils->_home_dir(), '.cpanplus' );
+  my $path  = $self->{conf}->get_conf('base');
   my $local = catfile( $path, RECENT_FILE );
 
   my $hosts = $self->{conf}->get_conf('hosts');
