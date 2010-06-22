@@ -341,7 +341,7 @@ sub reindex {
   $self->{conf}->set_conf( no_update => 0 );
   $self->{cpanplus}->reload_indices( update_source => 1 );
   $self->{conf}->set_conf( no_update => 1 )
-    if glob( catfile( $conf->get_conf('base'), $conf->_get_source('stored') .'*'. STORABLE_EXT, ) );
+    if glob( catfile( $self->{conf}->get_conf('base'), $self->{conf}->_get_source('stored') .'*'. STORABLE_EXT, ) );
   return 1;
 }
 
