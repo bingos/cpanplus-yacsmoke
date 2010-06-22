@@ -1,4 +1,30 @@
 ==============================
+2010-04-26 12:20:25 +0100 0.56
+==============================
+
+  commit 7a3b89cf97c57d520a976cf5b4b6365ca454cd41
+  Author: Chris Williams <chris@bingosnet.co.uk>
+  Date:   Mon Apr 26 12:20:25 2010 +0100
+  
+    Resolve [RT #56407] reported by Przemysław Wesołek
+
+    Both RECENT file and cpansmoke.dat.* files are saved in .cpanplus
+    directory.
+
+    However, when configuration of CPANPLUS changes, specifically
+
+    CPAN::Config->{base} (e.g. through setting PERL5_YACSMOKE_BASE),
+
+    cpansmoke.dat.* are saved in the new directory, while RECENT are
+    still
+
+    being placed in $HOME/.cpanplus.
+
+    It would be nice, if the module be consistent with CPANPLUS::Config
+
+    settings. 
+
+==============================
 2010-03-25 10:12:40 +0000 0.54
 ==============================
 

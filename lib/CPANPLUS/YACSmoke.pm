@@ -28,14 +28,14 @@ require Exporter;
 
 our @ISA = qw( Exporter );
 our %EXPORT_TAGS = (
-  'all'      => [ qw( mark test excluded purge flush ) ],
+  'all'      => [ qw( mark test excluded purge flush reindex) ],
   'default'  => [ qw( mark test excluded ) ],
 );
 
 our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 our @EXPORT    = ( @{ $EXPORT_TAGS{'default'} } );
 
-$VERSION = '0.56';
+$VERSION = '0.58';
 
 {
   my %Checked;
@@ -330,6 +330,21 @@ sub flush {
   return 1;
 }
 
+sub reindex {
+  my $self;
+  eval {
+    if ( (ref $_[0]) && $_[0]->isa(__PACKAGE__) ) {
+	$self = shift;
+    }
+  };
+  $self ||= __PACKAGE__->new();
+  $self->{conf}->set_conf( no_update => 0 );
+  $self->{cpanplus}->reload_indices( update_source => 1 );
+  $self->{conf}->set_conf( no_update => 1 )
+    if glob( catfile( $conf->get_conf('base'), $conf->_get_source('stored') .'*'. STORABLE_EXT, ) );
+  return 1;
+}
+
 sub _is_excluded_dist {
   my $self = shift;
   my $dist = shift || return;
@@ -519,6 +534,10 @@ Note that this cannot be done reliably using last access or modify time, as
 the intention is for this distribution to be used on any OS that CPANPLUS
 is installed on. In this case not all OSs support the full range of return
 values from the stat function.
+
+=item reindex
+
+Make L<CPANPLUS> reload its indices.
 
 =back
 

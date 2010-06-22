@@ -9,9 +9,15 @@ my $test;
 my $mark;
 my $purge;
 my $flush;
+my $reindex;
 
-GetOptions( 'test', \$test, 'mark', \$mark, 'purge', \$purge, 'flush', \$flush )
+GetOptions( 'test', \$test, 'mark', \$mark, 'purge', \$purge, 'flush', \$flush, 'reindex', \$reindex )
 	or pod2usage;
+
+if ( $reindex ) {
+  reindex();
+  exit 0;
+}
 
 if ( $test ) {
   test( @ARGV );
@@ -50,6 +56,7 @@ yactool - A simple command-line tool for CPANPLUS::YACSmoke
    --mark	- mark distributions
    --purge	- purge distributions
    --flush	- flush distributions
+   -reindex - reindex CPANPLUS indices
 
 =head1 DESCRIPTION
 
@@ -125,6 +132,12 @@ Note that this cannot be done reliably using last access or modify time, as
 the intention is for this distribution to be used on any OS that CPANPLUS
 is installed on. In this case not all OSs support the full range of return
 values from the stat function.
+
+=item C<--reindex>
+
+  yactool --reindex
+
+Make L<CPANPLUS> reload its indices.
 
 =back
 
