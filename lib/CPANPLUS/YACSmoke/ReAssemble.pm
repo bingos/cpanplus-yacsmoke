@@ -6,16 +6,11 @@
 package CPANPLUS::YACSmoke::ReAssemble;
 
 use vars qw/$VERSION $have_Storable $Current_Lexer $Default_Lexer $Single_Char $Always_Fail/;
-$VERSION = '0.58';
+$VERSION = '0.60';
 
 =head1 NAME
 
 Regexp::Assemble - Assemble multiple Regular Expressions into a single RE
-
-=head1 VERSION
-
-This document describes version 0.34 of Regexp::Assemble, released
-2008-06-17.
 
 =head1 SYNOPSIS
 
