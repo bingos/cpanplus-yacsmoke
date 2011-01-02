@@ -14,9 +14,9 @@ use File::Fetch;
 use IO::File;
 use File::Spec::Functions;
 use File::Path;
-use Regexp::Assemble;
-use Sort::Versions;
-use Config::IniFiles;
+use CPANPLUS::YACSmoke::ReAssemble;
+use CPANPLUS::YACSmoke::SortVers;
+use CPANPLUS::YACSmoke::IniFiles;
 
 use vars qw($VERSION);
 
@@ -95,10 +95,10 @@ sub new {
   my $exclude_dists;
   my $config_file = catfile( $conf->get_conf('base'), CONFIG_FILE );
   if ( -r $config_file ) {
-     my $cfg = Config::IniFiles->new(-file => $config_file);
+     my $cfg = CPANPLUS::YACSmoke::IniFiles->new(-file => $config_file);
      my @list = $cfg->val( 'CONFIG', 'exclude_dists' );
      if ( @list ) {
-        $exclude_dists = Regexp::Assemble->new();
+        $exclude_dists = CPANPLUS::YACSmoke::ReAssemble->new();
         $exclude_dists->add( @list );
      }
   }

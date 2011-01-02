@@ -1,4 +1,20 @@
 ==============================
+2010-06-22 21:41:09 +0100 0.58
+==============================
+
+  commit 3d816f048ad4514b930e82a39984bba97fdc82a2
+  Author: Chris 'BinGOs' Williams <chris@bingosnet.co.uk>
+  Date:   Tue Jun 22 21:41:09 2010 +0100
+  
+    Fix a problem with the previous commit
+
+  commit d24ce731604ff8120bea7825787d2d4b380c8ebc
+  Author: Chris 'BinGOs' Williams <chris@bingosnet.co.uk>
+  Date:   Tue Jun 22 21:37:37 2010 +0100
+  
+    Added 'reindex' to reload CPANPLUS' indices 
+
+==============================
 2010-04-26 12:20:25 +0100 0.56
 ==============================
 
