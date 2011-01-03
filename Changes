@@ -1,4 +1,21 @@
 ==============================
+2011-01-02 20:22:36 +0000 0.60
+==============================
+
+  commit fe08e1c9ceebfa103a19d426930ffb19dcb8ae93
+  Author: Chris 'BinGOs' Williams <chris@bingosnet.co.uk>
+  Date:   Sun Jan 2 20:22:36 2011 +0000
+  
+    Bump version to 0.60
+
+  commit ebc8a1a6816a60e2e478944f3ea38524bfcecd53
+  Author: Chris 'BinGOs' Williams <chris@bingosnet.co.uk>
+  Date:   Sun Jan 2 20:14:10 2011 +0000
+  
+    Integrate Regexp::Assemble, Sort::Versions and Config::IniFiles to
+    reduce prereqs 
+
+==============================
 2010-06-22 21:41:09 +0100 0.58
 ==============================
 
