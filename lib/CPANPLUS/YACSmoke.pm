@@ -517,11 +517,11 @@ path created for each older copy of a distribution is deleted.
 
 =item flush( [ 'all' | 'old' ]  )
 
-  perl -MCPAN::YACSmoke -e flush()
+  perl -MCPANPLUS::YACSmoke -e flush()
   
-  perl -MCPAN::YACSmoke -e flush('all')
+  perl -MCPANPLUS::YACSmoke -e flush('all')
 
-  perl -MCPAN::YACSmoke -e flush('old')
+  perl -MCPANPLUS::YACSmoke -e flush('old')
 
 Removes unrequired build directories from the designated CPANPLUS build
 directory. Note that this deletes directories regardless of whether the 
