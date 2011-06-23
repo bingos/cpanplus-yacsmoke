@@ -12,6 +12,7 @@ use POSIX qw( O_CREAT O_RDWR O_RDONLY );         # for SDBM_File
 use SDBM_File;
 use File::Fetch;
 use IO::File;
+use File::Spec::Unix;
 use File::Spec::Functions;
 use File::Path;
 use CPANPLUS::YACSmoke::ReAssemble;
@@ -35,7 +36,7 @@ our %EXPORT_TAGS = (
 our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 our @EXPORT    = ( @{ $EXPORT_TAGS{'default'} } );
 
-$VERSION = '0.62';
+$VERSION = '0.64';
 
 {
   my %Checked;
@@ -70,7 +71,7 @@ sub new {
 
   # Override configure settings
   $conf->set_conf( prereqs => 2 ); # force to ask callback
-  $conf->set_conf( skiptest => 0 ); 
+  $conf->set_conf( skiptest => 0 );
   $conf->set_conf( no_update => 1 )
     if glob( catfile( $conf->get_conf('base'), $conf->_get_source('stored') .'*'. STORABLE_EXT, ) );
   $conf->set_conf( dist_type => 'CPANPLUS::Dist::YACSmoke' ); # this is where the magic happens.
@@ -86,8 +87,8 @@ sub new {
      $conf->set_conf( prefer_makefile => 0 ); # Prefer Build.PL if we have M::B
   }
   else {
-     eval "require Module::Build"; 
-     $conf->set_conf( prefer_makefile => 0 ) unless $@; # 
+     eval "require Module::Build";
+     $conf->set_conf( prefer_makefile => 0 ) unless $@; #
   }
 
   my $cb   = CPANPLUS::Backend->new($conf);
@@ -120,7 +121,7 @@ sub test {
   };
   $self ||= __PACKAGE__->new();
   $self->_connect_db();
-  
+
   my @dists = @_;
 
   unless ( @dists ) {
@@ -145,7 +146,7 @@ sub test {
   foreach my $mod ( @mods ) {
      eval {
 		CPANPLUS::Error->flush();
-		my $stat = $self->{cpanplus}->install( 
+		my $stat = $self->{cpanplus}->install(
 				modules  => [ $mod ],
 				target   => 'create',
 				allow_build_interactively => 0,
@@ -174,7 +175,7 @@ sub mark {
   if ($grade) {
     my $mod = $self->{cpanplus}->parse_module( module => $distver );
     return error(qq{Invalid distribution "$distver"}) unless $mod;
-    
+
     unless ($grade =~ /(pass|fail|unknown|na|none|ungraded|aborted|ignored)/) {
       return error("Invalid grade: '$grade'");
     }
@@ -255,7 +256,7 @@ sub purge {
 	next	unless(/^(.*)\-(.+)$/);
 	push @{$distvars{$1}}, $2;
      }
-  } 
+  }
   else {
      for(keys %{$self->{checked}}) {
 	next	unless(/^(.*)\-(.+)$/);
@@ -311,7 +312,7 @@ sub flush {
 	    next if $dir =~ /^\.+$/;
 		  $dir =~ /(.*)-(.+)/;
 		  $dists{$1}->{$2} = "$dir";
-	  } 
+	  }
     closedir($DIR);
 	  for my $dist (keys %dists) {
 	    for(sort { versioncmp($a, $b) } keys %{$dists{$dist}}) {
@@ -362,10 +363,19 @@ sub _download_list {
   my $h_ind = 0;
 
   while ($h_ind < @$hosts) {
-      my $remote = $hosts->[$h_ind]->{scheme} . '://'
-                . catdir(
-                        $hosts->[$h_ind]->{host},
-                        $hosts->[$h_ind]->{path} . RECENT_FILE );
+      my $host = $hosts->[$h_ind];
+      my $mirror_path = File::Spec::Unix->catfile(
+           $host->{'path'},
+           RECENT_FILE
+      );
+
+      my %args = (
+          scheme => $host->{scheme},
+          host   => $host->{host},
+          path   => $mirror_path,
+      );
+
+      my $remote = $self->{cpanplus}->_host_to_uri( %args );
 
       my $ff = File::Fetch->new( uri => $remote );
       my $status = $ff->fetch( to => $path );

@@ -13,12 +13,12 @@ build_requires 'Test::More' => 0.47;
 if ( can_use('CPANPLUS', 0.88 ) ) {
    require CPANPLUS::Backend;
    require CPANPLUS::Selfupdate;
-   my $href = 
+   my $href =
       CPANPLUS::Selfupdate->new(CPANPLUS::Backend->new())->modules_for_feature('cpantest',1);
    requires $_ => $href->{$_} for keys %$href;
 }
 requires 'version'  => '0.73';
-requires 'CPANPLUS' => '0.88';
+requires 'CPANPLUS' => '0.9103';
 requires 'Module::Load::Conditional' => 0;
 requires 'Params::Check' => 0;
 requires 'SDBM_File' => 0;
@@ -26,8 +26,8 @@ requires 'File::Spec' => 0;
 requires 'ExtUtils::ParseXS' => 0;
 requires 'ExtUtils::CBuilder' => 0;
 requires 'Module::Build' => 0.33;
-requires 'CPANPLUS::Dist::Build' => 0.38;
-requires 'IPC::Run' => 0 if win32;
+requires 'CPANPLUS::Dist::Build' => 0.54;
+requires 'IPC::Cmd' => 0.72 if win32;
 makemaker_args(dist => { PREOP => "$^X ./tools/git-log.pl > ./Changes" });
 clean_files 't/dummy-cpanplus';
 auto_provides;
