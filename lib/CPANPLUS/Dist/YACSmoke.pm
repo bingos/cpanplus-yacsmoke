@@ -20,7 +20,7 @@ use CPANPLUS::YACSmoke::IniFiles;
 
 use vars qw($VERSION);
 
-$VERSION = '0.64';
+$VERSION = '0.66';
 
 use constant DATABASE_FILE => 'cpansmoke.dat';
 use constant CONFIG_FILE   => 'cpansmoke.ini';
