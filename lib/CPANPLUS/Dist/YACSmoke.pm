@@ -25,7 +25,7 @@ $VERSION = '0.64';
 use constant DATABASE_FILE => 'cpansmoke.dat';
 use constant CONFIG_FILE   => 'cpansmoke.ini';
 
-{ 
+{
 
 $ENV{AUTOMATED_TESTING} = 1;
 $ENV{PERL_MM_USE_DEFAULT} = 1; # despite verbose setting
@@ -89,7 +89,12 @@ my %throw_away;
         if ( $grade eq GRADE_PASS ) {
 		        my $buffer  = CPANPLUS::Error->stack_as_string;
             my $last = ( split /MAKE TEST passed/, $buffer )[-1];
-            $report .= join('', 'MAKE TEST passed', $last, "\n");
+            $report .= join('', 'MAKE TEST passed', $last, "\n\n");
+            ### add a list of what modules have been loaded of your prereqs list
+            $report .= REPORT_LOADED_PREREQS->($mod);
+            ### add a list of versions of toolchain modules
+            $report .= REPORT_TOOLCHAIN_VERSIONS->($mod);
+            $report .= REPORT_MESSAGE_FOOTER->();
 			      last SWITCH;
         }
 		    if ( $grade ne GRADE_PASS and $report =~ /No \'Makefile.PL\' found - attempting to generate one/s ) {
@@ -158,12 +163,12 @@ my %throw_away;
 		my $grade = lc shift;
 		my $package = $mod->package_name .'-'. $mod->package_version;
 		my $checked = $Checked{$package};
-		
+
 		# Did we want to throw away this report?
 		my $throw = delete $throw_away{ $package };
 		return if $throw;
 
-          # Simplified algorithm for reporting: 
+          # Simplified algorithm for reporting:
           # * don't send a report if
           #   - we get the same results as the last report sent
           #   - it passed the last test but not now
@@ -208,7 +213,7 @@ my %throw_away;
             prereq_format   => {    #default => $self->status->installer_type,
                                     default => '',
                                     store   => \$prereq_format },
-            prereq_build    => {    default => 0, store => \$prereq_build },                                    
+            prereq_build    => {    default => 0, store => \$prereq_build },
           };
           $args = check( $tmpl, \%hash ) or return;
        }
@@ -231,7 +236,7 @@ my %throw_away;
     if ( $checked and $checked eq 'pass' ) {
        msg(qq{Found previous PASS result for "$package" skipping tests.});
        push @_, skiptest => 1;
-    } 
+    }
     $self->SUPER::create( @_ );
   }
 
@@ -330,8 +335,8 @@ CPANPLUS::Dist::YACSmoke - CPANPLUS distribution class that integrates CPAN Test
 
 =head1 DESCRIPTION
 
-CPANPLUS::Dist::YACSmoke is a L<CPANPLUS> distribution class that integrates a number of CPAN Testing services 
-into L<CPANPLUS>. 
+CPANPLUS::Dist::YACSmoke is a L<CPANPLUS> distribution class that integrates a number of CPAN Testing services
+into L<CPANPLUS>.
 
 It will create a database file in the F<.cpanplus> directory, which it
 uses to track tested distributions.  This information will be used to
