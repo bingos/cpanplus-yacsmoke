@@ -20,7 +20,7 @@ use CPANPLUS::YACSmoke::IniFiles;
 
 use vars qw($VERSION);
 
-$VERSION = '0.66';
+$VERSION = '0.68';
 
 use constant DATABASE_FILE => 'cpansmoke.dat';
 use constant CONFIG_FILE   => 'cpansmoke.ini';
@@ -81,14 +81,17 @@ my %throw_away;
 		  my $mod    = shift;
 		  my $report = shift || "";
 		  my $grade  = shift;
+      my $stack = CPANPLUS::Error->stack_as_string;
+
 		  SWITCH: {
-		    if ( $grade ne GRADE_PASS and $report =~ /Will not install prerequisite /s ) {
+        my $sv = version->new($CPANPLUS::Internals::VERSION) > version->new('0.9116');
+
+		    if ( $grade ne GRADE_PASS and $stack =~ /Will not install prerequisite /s ) {
 			      $throw_away{ $mod->package_name . '-' . $mod->package_version } = 'toss';
 			      last SWITCH;
 		    }
-        if ( $grade eq GRADE_PASS ) {
-		        my $buffer  = CPANPLUS::Error->stack_as_string;
-            my $last = ( split /MAKE TEST passed/, $buffer )[-1];
+        if ( !$sv and $grade eq GRADE_PASS ) {
+            my $last = ( split /MAKE TEST passed/, $stack )[-1];
             $report .= join('', 'MAKE TEST passed', $last, "\n\n");
             ### add a list of what modules have been loaded of your prereqs list
             $report .= REPORT_LOADED_PREREQS->($mod);
@@ -97,10 +100,11 @@ my %throw_away;
             $report .= REPORT_MESSAGE_FOOTER->();
 			      last SWITCH;
         }
-		    if ( $grade ne GRADE_PASS and $report =~ /No \'Makefile.PL\' found - attempting to generate one/s ) {
+		    if ( $grade ne GRADE_PASS and $stack =~ /No \'Makefile.PL\' found - attempting to generate one/s ) {
 			      $throw_away{ $mod->package_name . '-' . $mod->package_version } = 'toss';
 		    }
 		  }
+
 		  $report =~ s/\[MSG\].*may need to build a \'CPANPLUS::Dist::YACSmoke\' package for it as well.*?\n//sg;
       $report =~ s/\[MSG\] \[[\w: ]+\] Extracted '\S*?'\n//sg;
 		  $report .=
