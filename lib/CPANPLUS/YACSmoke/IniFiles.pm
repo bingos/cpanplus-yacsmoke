@@ -2,7 +2,7 @@ package CPANPLUS::YACSmoke::IniFiles;
 
 use vars qw($VERSION);
 
-$VERSION = '0.68';
+$VERSION = '0.70';
 
 require 5.004;
 use strict;
@@ -2191,7 +2191,7 @@ use strict;
 use Carp;
 use vars qw( $VERSION );
 
-$CPANPLUS::YACSmoke::IniFiles::_section::VERSION = 0.68;
+$CPANPLUS::YACSmoke::IniFiles::_section::VERSION = 0.70;
 
 # ----------------------------------------------------------
 # Sub: Config::IniFiles::_section::TIEHASH

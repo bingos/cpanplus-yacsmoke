@@ -20,7 +20,7 @@ use CPANPLUS::YACSmoke::IniFiles;
 
 use vars qw($VERSION);
 
-$VERSION = '0.68';
+$VERSION = '0.70';
 
 use constant DATABASE_FILE => 'cpansmoke.dat';
 use constant CONFIG_FILE   => 'cpansmoke.ini';
@@ -85,6 +85,11 @@ my %throw_away;
 
 		  SWITCH: {
         my $sv = version->new($CPANPLUS::Internals::VERSION) > version->new('0.9116');
+        my $installer = $mod->status->installer_type;
+        if ( $sv and $installer eq 'CPANPLUS::Dist::Build' ) {
+          require CPANPLUS::Dist::Build;
+          $sv = version->new($CPANPLUS::Dist::Build::VERSION) > version->new('0.60');
+        }
 
 		    if ( $grade ne GRADE_PASS and $stack =~ /Will not install prerequisite /s ) {
 			      $throw_away{ $mod->package_name . '-' . $mod->package_version } = 'toss';
