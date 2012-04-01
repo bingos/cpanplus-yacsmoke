@@ -36,7 +36,7 @@ our %EXPORT_TAGS = (
 our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 our @EXPORT    = ( @{ $EXPORT_TAGS{'default'} } );
 
-$VERSION = '0.70';
+$VERSION = '0.72';
 
 {
   my %Checked;
@@ -325,6 +325,12 @@ sub flush {
 		msg("Flushing '$build_dir'");
 		rmtree($build_dir);
 		msg("Flushed '$build_dir'");
+    require File::Glob;
+    ( my $base = $self->{conf}->get_conf('base') ) =~ s![\\/]$!!;
+    foreach my $sourcefile ( File::Glob::bsd_glob( $base . q{/sourcefile*} ) ) {
+		  msg("Removing '$sourcefile'");
+      rmtree $sourcefile;
+    }
 	}
 
   $self->_disconnect_db();
