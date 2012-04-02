@@ -18,7 +18,7 @@ if ( can_use('CPANPLUS', 0.88 ) ) {
    requires $_ => $href->{$_} for keys %$href;
 }
 requires 'version'  => '0.73';
-requires 'CPANPLUS' => '0.9103';
+requires 'CPANPLUS' => '0.9123';
 requires 'Module::Load::Conditional' => 0;
 requires 'Params::Check' => 0;
 requires 'SDBM_File' => 0;
@@ -26,7 +26,7 @@ requires 'File::Spec' => 0;
 requires 'ExtUtils::ParseXS' => 0;
 requires 'ExtUtils::CBuilder' => 0;
 requires 'Module::Build' => 0.33;
-requires 'CPANPLUS::Dist::Build' => 0.54;
+requires 'CPANPLUS::Dist::Build' => 0.62;
 requires 'IPC::Cmd' => 0.72 if win32;
 makemaker_args(dist => { PREOP => "$^X ./tools/git-log.pl > ./Changes" });
 clean_files 't/dummy-cpanplus';
