@@ -36,7 +36,7 @@ our %EXPORT_TAGS = (
 our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 our @EXPORT    = ( @{ $EXPORT_TAGS{'default'} } );
 
-$VERSION = '0.74';
+$VERSION = '0.76';
 
 {
   my %Checked;
@@ -77,6 +77,7 @@ sub new {
   $conf->set_conf( dist_type => 'CPANPLUS::Dist::YACSmoke' ); # this is where the magic happens.
   $conf->set_conf( cpantest => 'dont_cc' ); # Yes, we want to report test results. But not CC
   $conf->set_conf( verbose => 1 ); # set verbosity to true.
+  $conf->set_conf( allow_unknown_prereqs => 0 ); # don't allow unknown prereqs
 
   unless ( defined $ENV{MAILDOMAIN} ) {
      my $hostpart = ( split /\@/, ( $conf->get_conf( 'email' ) || 'smoker@cpantesters.org' ) )[1];
