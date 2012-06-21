@@ -146,7 +146,7 @@ perl 5.005 and earlier, but its use is deprecated.
 
 Ed Avis <ed@membled.com> and Matt Johnson <mwj99@doc.ic.ac.uk> for
 recent releases; the original author is Kenneth J. Albanowski
-<kjahds@kjahds.com>.  Thanks to Hack Kampbjørn and Slaven Rezic for
+<kjahds@kjahds.com>.  Thanks to Hack Kampbjorn and Slaven Rezic for
 patches and bug reports.
 
 Copyright (c) 1996, Kenneth J. Albanowski. All rights reserved.  This
