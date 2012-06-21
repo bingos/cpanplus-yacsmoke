@@ -1,6 +1,6 @@
 ### make sure we can find our conf.pl file
-BEGIN { 
-    use FindBin; 
+BEGIN {
+    use FindBin;
     require "$FindBin::Bin/inc/conf.pl";
 }
 
@@ -9,9 +9,18 @@ use warnings;
 use File::Spec;
 use File::Temp;
 use File::Find;
-use Test::More tests => 14;
+use Test::More;
+use Module::CoreList;
 use lib 't/inc';
 use Capture::Tiny qw(capture_merged);
+
+unless ( $Module::CoreList::released{ $] } ) {
+  plan skip_all => 'This test relies on information in Module::CoreList that is not there';
+}
+else {
+  plan tests => 14;
+}
+
 use_ok('CPANPLUS::YACSmoke');
 
 my $dir = File::Temp::tempdir( CLEANUP => 1 );
@@ -28,8 +37,8 @@ $self->{conf}->set_conf( cpantest_reporter_args => { transport => 'File', transp
 $self->{conf}->set_conf( md5 => 0 );
 capture_merged { $self->test('E/EU/EUNOXS/Fibble-Bar-0.01.tar.gz'); };
 my @reports;
-find( sub { 
-    push @reports, $_ if -f; 
+find( sub {
+    push @reports, $_ if -f;
 }, $dir );
 is( scalar @reports, 1, 'found a report in the directory' );
 my $report;
