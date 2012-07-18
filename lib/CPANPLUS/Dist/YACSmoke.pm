@@ -20,7 +20,7 @@ use CPANPLUS::YACSmoke::IniFiles;
 
 use vars qw($VERSION);
 
-$VERSION = '0.82';
+$VERSION = '0.84';
 
 use constant DATABASE_FILE => 'cpansmoke.dat';
 use constant CONFIG_FILE   => 'cpansmoke.ini';
@@ -226,8 +226,8 @@ my %throw_away;
           };
           $args = check( $tmpl, \%hash ) or return;
        }
-       return 0 unless 
-	  $self->_resolve_prereqs(
+       return 0 unless
+	                  $self->_resolve_prereqs(
                         force           => $force,
                         format          => $prereq_format,
                         verbose         => $verbose,
@@ -242,6 +242,12 @@ my %throw_away;
     my $package = $mod->package_name .'-'. $mod->package_version;
     msg(qq{Checking for previous PASS result for "$package"});
     my $checked = $Checked{$package};
+    {
+      # Don't propagate 'skiptest'
+      my %args = @_;
+      delete $args{skiptest};
+      @_ = %args;
+    }
     if ( $checked and $checked eq 'pass' ) {
        msg(qq{Found previous PASS result for "$package" skipping tests.});
        push @_, skiptest => 1;
