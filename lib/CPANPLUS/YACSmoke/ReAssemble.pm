@@ -1570,24 +1570,24 @@ carefully formatted output.
 
 =over 8
 
-=item 0
+=item C<0>
 
 Off. Turns off all debugging output.
 
-=item 1
+=item C<1>
 
 Add. Trace the addition of patterns.
 
-=item 2
+=item C<2>
 
 Reduce. Trace the process of reduction and assembly.
 
-=item 4
+=item C<4>
 
 Lex. Trace the lexing of the input patterns into its constituent
 tokens.
 
-=item 8
+=item C<8>
 
 Time. Print to STDOUT the time taken to load all the patterns. This is
 nothing more than the difference between the time the object was
