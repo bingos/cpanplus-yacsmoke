@@ -6,10 +6,10 @@ BEGIN {
 
 use strict;
 use warnings;
-use Test::More tests => 7;
+use Test::More tests => 8;
 use_ok('CPANPLUS::YACSmoke');
 
-my @env_vars = qw(AUTOMATED_TESTING PERL_MM_USE_DEFAULT MAILDOMAIN);
+my @env_vars = qw(AUTOMATED_TESTING PERL_MM_USE_DEFAULT MAILDOMAIN NONINTERACTIVE_TESTING);
 delete $ENV{$_} for @env_vars;
 
 my $self = CPANPLUS::YACSmoke->new();

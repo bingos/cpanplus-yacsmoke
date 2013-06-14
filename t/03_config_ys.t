@@ -6,11 +6,11 @@ BEGIN {
 
 use strict;
 use warnings;
-use Test::More tests => 6;
+use Test::More tests => 7;
 use File::Spec;
 use_ok('CPANPLUS::YACSmoke');
 
-my @env_vars = qw(AUTOMATED_TESTING PERL_MM_USE_DEFAULT MAILDOMAIN);
+my @env_vars = qw(AUTOMATED_TESTING PERL_MM_USE_DEFAULT MAILDOMAIN NONINTERACTIVE_TESTING);
 delete $ENV{$_} for @env_vars;
 
 $ENV{PERL5_YACSMOKE_BASE} = File::Spec->rel2abs('.');

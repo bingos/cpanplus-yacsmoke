@@ -18,14 +18,14 @@ unless ( $Module::CoreList::released{ $] } ) {
   plan skip_all => 'This test relies on information in Module::CoreList that is not there';
 }
 else {
-  plan tests => 14;
+  plan tests => 15;
 }
 
 use_ok('CPANPLUS::YACSmoke');
 
 my $dir = File::Temp::tempdir( CLEANUP => 1 );
 
-my @env_vars = qw(AUTOMATED_TESTING PERL_MM_USE_DEFAULT MAILDOMAIN);
+my @env_vars = qw(AUTOMATED_TESTING PERL_MM_USE_DEFAULT MAILDOMAIN NONINTERACTIVE_TESTING);
 delete $ENV{$_} for @env_vars;
 
 my $self = CPANPLUS::YACSmoke->new( gimme_conf() );

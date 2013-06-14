@@ -36,7 +36,7 @@ our %EXPORT_TAGS = (
 our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 our @EXPORT    = ( @{ $EXPORT_TAGS{'default'} } );
 
-$VERSION = '0.86';
+$VERSION = '0.88';
 
 {
   my %Checked;
@@ -64,6 +64,7 @@ sub new {
   my $nconf = shift if ref $_[0] and $_[0]->isa('CPANPLUS::Configure');
 
   $ENV{AUTOMATED_TESTING} = 1;
+  $ENV{NONINTERACTIVE_TESTING} = 1; # Lancaster Consensus
   $ENV{PERL_MM_USE_DEFAULT} = 1; # despite verbose setting
   $ENV{PERL_EXTUTILS_AUTOINSTALL} = '--defaultdeps';
 

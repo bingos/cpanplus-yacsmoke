@@ -9,14 +9,14 @@ use warnings;
 use File::Spec;
 use File::Temp;
 use File::Find;
-use Test::More tests => 11;
+use Test::More tests => 12;
 use lib 't/inc';
 use Capture::Tiny qw(capture_merged);
 use_ok('CPANPLUS::YACSmoke');
 
 my $dir = File::Temp::tempdir( CLEANUP => 1 );
 
-my @env_vars = qw(AUTOMATED_TESTING PERL_MM_USE_DEFAULT MAILDOMAIN);
+my @env_vars = qw(AUTOMATED_TESTING PERL_MM_USE_DEFAULT MAILDOMAIN NONINTERACTIVE_TESTING);
 delete $ENV{$_} for @env_vars;
 
 my $self = CPANPLUS::YACSmoke->new( gimme_conf() );

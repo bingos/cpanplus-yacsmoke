@@ -20,7 +20,7 @@ use CPANPLUS::YACSmoke::IniFiles;
 
 use vars qw($VERSION);
 
-$VERSION = '0.86';
+$VERSION = '0.88';
 
 use constant DATABASE_FILE => 'cpansmoke.dat';
 use constant CONFIG_FILE   => 'cpansmoke.ini';
@@ -266,6 +266,7 @@ sub _env_report {
     COMSPEC
     TERM
     AUTOMATED_TESTING
+    NONINTERACTIVE_TESTING
     AUTHOR_TESTING
     RELEASE_TESTING
     INCLUDE
