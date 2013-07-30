@@ -6,6 +6,7 @@ BEGIN {
 
 use strict;
 use warnings;
+use File::Spec;
 use File::Temp;
 use File::Find;
 use Test::More tests => 10;
@@ -24,23 +25,25 @@ my $ini  = File::Spec->catfile( $conf->get_conf('base'), 'cpansmoke.ini' );
 open INIFILE, "> $ini" or die "$!\n";
 print INIFILE <<EOF;
 [CONFIG]
-exclude_dists=<<HERE
-^Foo
-HERE
 exclude_auths=<<THERE
-^MSCHWERN\$
+^ASSHAT\$
 THERE
 EOF
 close INIFILE;
 
-my $self = CPANPLUS::YACSmoke->new($conf);
+my $self = CPANPLUS::YACSmoke->new( $conf );
 isa_ok($self,'CPANPLUS::YACSmoke');
 ok( $ENV{$_}, "$_ is set" ) for @env_vars;
 isa_ok( $self->{conf}, 'CPANPLUS::Configure' );
 isa_ok( $self->{cpanplus}, 'CPANPLUS::Backend' );
+$self->{conf}->set_conf( cpantest_reporter_args => { transport => 'File', transport_args => [ $dir ], } );
 $self->{conf}->set_conf( md5 => 0 );
-my @excluded;
-capture_merged { @excluded = $self->excluded( 'Foo::Bar' ); };
-ok( ( grep { $_ eq 'Foo-Bar-0.01' } @excluded ), 'Foo-Bar-0.01 is excluded' );
-capture_merged { @excluded = $self->excluded( 'ExtUtils::MakeMaker' ); };
-ok( ( grep { $_ eq 'ExtUtils-MakeMaker-6.54' } @excluded ), );
+capture_merged { $self->test('E/EU/EUNOXS/Gobble-Bar-0.01.tar.gz'); };
+my @reports;
+find( sub {
+    push @reports, $_ if -f;
+}, $dir );
+is( scalar @reports, 0, 'found a report in the directory' );
+my $grade;
+capture_merged { $grade = $self->mark('Gobble-Bar-0.01'); };
+is($grade,undef,'No grade');

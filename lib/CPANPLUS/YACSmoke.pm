@@ -36,7 +36,7 @@ our %EXPORT_TAGS = (
 our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 our @EXPORT    = ( @{ $EXPORT_TAGS{'default'} } );
 
-$VERSION = '0.88';
+$VERSION = '0.90';
 
 {
   my %Checked;
@@ -96,13 +96,23 @@ sub new {
   my $cb   = CPANPLUS::Backend->new($conf);
 
   my $exclude_dists;
+  my $exclude_auths;
   my $config_file = catfile( $conf->get_conf('base'), CONFIG_FILE );
   if ( -r $config_file ) {
      my $cfg = CPANPLUS::YACSmoke::IniFiles->new(-file => $config_file);
-     my @list = $cfg->val( 'CONFIG', 'exclude_dists' );
-     if ( @list ) {
-        $exclude_dists = CPANPLUS::YACSmoke::ReAssemble->new();
-        $exclude_dists->add( @list );
+     {
+       my @list = $cfg->val( 'CONFIG', 'exclude_dists' );
+       if ( @list ) {
+          $exclude_dists = CPANPLUS::YACSmoke::ReAssemble->new();
+          $exclude_dists->add( @list );
+       }
+     }
+     {
+       my @list = $cfg->val( 'CONFIG', 'exclude_auths' );
+       if ( @list ) {
+          $exclude_auths = CPANPLUS::YACSmoke::ReAssemble->new();
+          $exclude_auths->add( @list );
+       }
      }
   }
 
@@ -110,6 +120,7 @@ sub new {
   $self->{conf} = $conf;
   $self->{cpanplus} = $cb;
   $self->{exclude_dists} = $exclude_dists;
+  $self->{exclude_auths} = $exclude_auths;
   $self->{allow_retries} = 'aborted|ungraded';
   return $self;
 }
@@ -229,7 +240,8 @@ sub excluded {
      my $mod = $self->{cpanplus}->parse_module( module => $dist );
      next unless $mod;
      my $package = $mod->package_name .'-'. $mod->package_version;
-     next unless $self->_is_excluded_dist($package);
+     my $auth = $mod->author->cpanid;
+     next unless $self->_is_excluded_dist($package) || $self->_is_excluded_auth($auth);
      msg(qq{EXCLUDED: "$package"});
      push @mods, $package;
   }
@@ -361,6 +373,13 @@ sub _is_excluded_dist {
   return 1 if $dist =~ $self->{exclude_dists}->re();
 }
 
+sub _is_excluded_auth {
+  my $self = shift;
+  my $auth = shift || return;
+  return unless $self->{exclude_auths};
+  return 1 if $auth =~ $self->{exclude_auths}->re();
+}
+
 sub _download_list {
   my $self  = shift;
 
@@ -441,7 +460,7 @@ uses to track tested distributions.  This information will be used to
 keep from posting multiple reports for the same module, and to keep
 from testing modules that use non-passing modules as prerequisites.
 
-If C<prereqs> have been tested previously and have resulted in a C<pass> grade then the tests for those 
+If C<prereqs> have been tested previously and have resulted in a C<pass> grade then the tests for those
 C<prereqs> will be skipped, speeding up smoke testing.
 
 By default it uses L<CPANPLUS> configuration settings.
@@ -461,6 +480,18 @@ The above would then ignore any distribution that includes the string
 'mod_perl' in its name. This is useful for distributions which use
 external C libraries, which are not installed, or for which testing
 is problematic.
+
+CPANPLUS::YACSmoke also supports C<exclude_auths> in the C<ini> file.
+Similar to C<exclude_dists>, but for excluding all distributions by
+a particular CPAN author ID.
+
+  [CONFIG]
+  exclude_auths=<<THERE
+  ^ASS
+  THERE
+
+The above would ignore all distributions of any CPAN author ID that
+begins with C<ASS>, such as C<ASSAM> and C<ASSONIA>.
 
 See L<Config::IniFiles> for more information on the INI file format.
 

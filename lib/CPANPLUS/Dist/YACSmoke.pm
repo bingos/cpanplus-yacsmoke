@@ -20,7 +20,7 @@ use CPANPLUS::YACSmoke::IniFiles;
 
 use vars qw($VERSION);
 
-$VERSION = '0.88';
+$VERSION = '0.90';
 
 use constant DATABASE_FILE => 'cpansmoke.dat';
 use constant CONFIG_FILE   => 'cpansmoke.ini';
@@ -33,12 +33,19 @@ $ENV{PERL_MM_USE_DEFAULT} = 1; # despite verbose setting
 my %Checked;
 my $TiedObj;
 my $exclude_dists;
+my $exclude_auths;
 my %throw_away;
 
   sub _is_excluded_dist {
     return unless $exclude_dists;
     my $dist = shift || return;
     return 1 if $dist =~ $exclude_dists->re();
+  }
+
+  sub _is_excluded_auth {
+    return unless $exclude_auths;
+    my $auth = shift || return;
+    return 1 if $auth =~ $exclude_auths->re();
   }
 
   sub init {
@@ -66,12 +73,21 @@ my %throw_away;
 
     my $config_file = catfile( $conf->get_conf('base'), CONFIG_FILE );
     if ( -r $config_file ) {
-       my $cfg = CPANPLUS::YACSmoke::IniFiles->new(-file => $config_file);
+     my $cfg = CPANPLUS::YACSmoke::IniFiles->new(-file => $config_file);
+     {
        my @list = $cfg->val( 'CONFIG', 'exclude_dists' );
        if ( @list ) {
           $exclude_dists = CPANPLUS::YACSmoke::ReAssemble->new();
           $exclude_dists->add( @list );
        }
+     }
+     {
+       my @list = $cfg->val( 'CONFIG', 'exclude_auths' );
+       if ( @list ) {
+          $exclude_auths = CPANPLUS::YACSmoke::ReAssemble->new();
+          $exclude_auths->add( @list );
+       }
+     }
     }
 
     # munge test report
@@ -144,6 +160,10 @@ my %throw_away;
 
 		  if ( _is_excluded_dist($package) ) { # prereq on excluded list
 			msg("Prereq $package is excluded");
+			return;
+		  }
+		  if ( _is_excluded_auth($arg->author->cpanid) ) { # author is on excluded list
+			msg("Author (" . $arg->author->cpanid . ") of prereq $package is excluded");
 			return;
 		  }
 

@@ -6,7 +6,7 @@
 package CPANPLUS::YACSmoke::ReAssemble;
 
 use vars qw/$VERSION $have_Storable $Current_Lexer $Default_Lexer $Single_Char $Always_Fail/;
-$VERSION = '0.88';
+$VERSION = '0.90';
 
 =head1 NAME
 
