@@ -20,7 +20,7 @@ use CPANPLUS::YACSmoke::IniFiles;
 
 use vars qw($VERSION);
 
-$VERSION = '0.90';
+$VERSION = '0.92';
 
 use constant DATABASE_FILE => 'cpansmoke.dat';
 use constant CONFIG_FILE   => 'cpansmoke.ini';
@@ -111,6 +111,10 @@ my %throw_away;
 			      $throw_away{ $mod->package_name . '-' . $mod->package_version } = 'toss';
 			      last SWITCH;
 		    }
+        if ( $grade ne GRADE_PASS and $stack =~ /You may have to resolve this dependency manually\./s ) {
+            $throw_away{ $mod->package_name . '-' . $mod->package_version } = 'toss';
+            last SWITCH;
+        }
         if ( !$sv and $grade eq GRADE_PASS ) {
             my $last = ( split /MAKE TEST passed/, $stack )[-1];
             $report .= join('', 'MAKE TEST passed', $last, "\n\n");
