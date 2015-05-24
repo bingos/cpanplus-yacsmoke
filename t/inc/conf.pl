@@ -4,6 +4,7 @@ my ($old_env_path, $old_env_perl5lib);
 BEGIN {
     use FindBin; 
     use File::Spec;
+    use File::Temp qw[tempdir];
     
     ### paths to our own 'lib' and 'inc' dirs
     ### include them, relative from t/
@@ -36,7 +37,9 @@ BEGIN {
     ### chdir to our own test dir, so we know all files are relative 
     ### to this point, no matter whether run from perlcore tests or
     ### regular CPAN installs
-    chdir "$FindBin::Bin" if -d "$FindBin::Bin"
+    my $tempdir = tempdir ( DIR => "$FindBin::Bin", CLEANUP => 1 );
+    chdir $tempdir if -d $tempdir;
+    mkdir 'dummy-cpanplus' or die "$!\n";
 }
 
 BEGIN {
@@ -89,7 +92,7 @@ use constant TEST_CONF_AUTHOR           => 'EUNOXS';
 use constant TEST_CONF_INST_MODULE      => 'Foo::Bar';
 use constant TEST_CONF_INVALID_MODULE   => 'fnurk';
 use constant TEST_CONF_MIRROR_DIR       => 'dummy-localmirror';
-use constant TEST_CONF_CPAN_DIR         => 'dummy-CPAN';
+use constant TEST_CONF_CPAN_DIR         => '../dummy-CPAN';
 use constant TEST_CONF_CPANPLUS_DIR     => 'dummy-cpanplus';
 use constant TEST_CONF_INSTALL_DIR      => File::Spec->rel2abs(
                                                 File::Spec->catdir(      

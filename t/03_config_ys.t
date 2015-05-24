@@ -10,6 +10,7 @@ use Test::More tests => 7;
 use File::Spec;
 use_ok('CPANPLUS::YACSmoke');
 
+delete $ENV{HARNESS_OPTIONS};
 my @env_vars = qw(AUTOMATED_TESTING PERL_MM_USE_DEFAULT MAILDOMAIN NONINTERACTIVE_TESTING);
 delete $ENV{$_} for @env_vars;
 

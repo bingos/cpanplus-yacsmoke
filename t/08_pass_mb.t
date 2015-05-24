@@ -1,6 +1,6 @@
 ### make sure we can find our conf.pl file
-BEGIN { 
-    use FindBin; 
+BEGIN {
+    use FindBin;
     require "$FindBin::Bin/inc/conf.pl";
 }
 
@@ -16,6 +16,7 @@ use_ok('CPANPLUS::YACSmoke');
 
 my $dir = File::Temp::tempdir( CLEANUP => 1 );
 
+delete $ENV{HARNESS_OPTIONS};
 my @env_vars = qw(AUTOMATED_TESTING PERL_MM_USE_DEFAULT MAILDOMAIN NONINTERACTIVE_TESTING);
 delete $ENV{$_} for @env_vars;
 
@@ -28,8 +29,8 @@ $self->{conf}->set_conf( cpantest_reporter_args => { transport => 'File', transp
 $self->{conf}->set_conf( md5 => 0 );
 capture_merged { $self->test('E/EU/EUNOXS/Fabble-Bar-0.01.tar.gz'); };
 my @reports;
-find( sub { 
-    push @reports, $_ if -f; 
+find( sub {
+    push @reports, $_ if -f;
 }, $dir );
 is( scalar @reports, 1, 'found a report in the directory' );
 my $report;
