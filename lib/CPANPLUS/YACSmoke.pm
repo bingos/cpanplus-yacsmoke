@@ -337,7 +337,7 @@ sub flush {
   }
 	else {
 		msg("Flushing '$build_dir'");
-		rmtree($build_dir);
+		rmtree($build_dir) if -e $build_dir;
 		msg("Flushed '$build_dir'");
     require File::Glob;
     ( my $base = $self->{conf}->get_conf('base') ) =~ s![\\/]$!!;
