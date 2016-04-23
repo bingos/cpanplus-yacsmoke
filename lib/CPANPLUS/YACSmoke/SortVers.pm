@@ -8,7 +8,7 @@
 
 package CPANPLUS::YACSmoke::SortVers;
 use vars '$VERSION';
-$VERSION = '0.96';
+$VERSION = '0.98';
 
 require Exporter;
 @ISA=qw(Exporter);

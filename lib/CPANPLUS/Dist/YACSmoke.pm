@@ -20,7 +20,7 @@ use CPANPLUS::YACSmoke::IniFiles;
 
 use vars qw($VERSION);
 
-$VERSION = '0.96';
+$VERSION = '0.98';
 
 use constant DATABASE_FILE => 'cpansmoke.dat';
 use constant CONFIG_FILE   => 'cpansmoke.ini';
@@ -284,6 +284,8 @@ sub _env_report {
     /PERL/
     /LC_/
     /HARNESS/
+    CFLAGS
+    LDFLAGS
     LANG
     LANGUAGE
     PATH
