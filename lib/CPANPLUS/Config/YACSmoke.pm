@@ -1,10 +1,10 @@
 package CPANPLUS::Config::YACSmoke;
 
+# Dist::Zilla: +PodWeaver
+#ABSTRACT: Set the environment for YACSmoking
+
 use strict;
 use File::Spec;
-use vars qw($VERSION);
-
-$VERSION = '1.00';
 
 sub setup {
   my $conf = shift;
@@ -15,11 +15,7 @@ sub setup {
 
 'YACSmoking';
 
-__END__
-
-=head1 NAME
-
-CPANPLUS::Config::YACSmoke - Set the environment for YACSmoking
+=pod
 
 =head1 SYNOPSIS
 
@@ -30,7 +26,7 @@ CPANPLUS::Config::YACSmoke - Set the environment for YACSmoking
 CPANPLUS::Config::YACSmoke is a L<CPANPLUS::Config> file that allows the CPAN Tester to
 specify where L<CPANPLUS::YACSmoke> and L<CPANPLUS> get their configuration from.
 
-Setting the environment variable C<PERL5_YACSMOKE_BASE> to a path location, determines 
+Setting the environment variable C<PERL5_YACSMOKE_BASE> to a path location, determines
 where the C<.cpanplus> directory will be located.
 
 =head1 METHODS
@@ -43,17 +39,9 @@ Called by L<CPANPLUS::Configure>.
 
 =back
 
-=head1 AUTHOR
-
-Chris C<BinGOs> Williams <chris@bingosnet.co.uk>
+=head1 KUDOS
 
 Contributions and patience from Jos Boumans the L<CPANPLUS> guy!
-
-=head1 LICENSE
-
-Copyright E<copy> Chris Williams and Jos Boumans.
-
-This module may be used, modified, and distributed under the same terms as Perl itself. Please see the license that came with your Perl distribution for details.
 
 =head1 SEE ALSO
 

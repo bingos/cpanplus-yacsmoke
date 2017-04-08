@@ -1,4 +1,8 @@
 #!perl
+
+# PODNAME: yactool
+#ABSTRACT: A simple command-line tool for CPANPLUS::YACSmoke
+
 use strict;
 use warnings;
 use CPANPLUS::YACSmoke qw(:all);
@@ -41,11 +45,7 @@ if ( $flush ) {
 
 pod2usage;
 
-__END__
-
-=head1 NAME
-
-yactool - A simple command-line tool for CPANPLUS::YACSmoke
+=pod
 
 =head1 SYNOPSIS
 
@@ -116,16 +116,16 @@ parameter list, those specific distributions will be purged.
 =item C<--flush>
 
   yactool --flush
-  
+
   yactool --flush all
 
   yactool --flush old
 
 Removes unrequired build directories from the designated CPANPLUS build
-directory. Note that this deletes directories regardless of whether the 
+directory. Note that this deletes directories regardless of whether the
 associated distribution was tested.
 
-Default flush is 'all'. The 'old' option will only delete the older 
+Default flush is 'all'. The 'old' option will only delete the older
 distributions, of multiple instances of a distribution.
 
 Note that this cannot be done reliably using last access or modify time, as
@@ -140,14 +140,6 @@ values from the stat function.
 Make L<CPANPLUS> reload its indices.
 
 =back
-
-=head1 AUTHOR
-
-Chris C<BinGOs> Williams <chris@bingosnet.co.uk>
-
-=head1 LICENSE 
-
-This module may be used, modified, and distributed under the same terms as Perl itself. Please see the license that came with your Perl distribution for details.
 
 =head1 SEE ALSO
 

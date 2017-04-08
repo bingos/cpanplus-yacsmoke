@@ -1,5 +1,8 @@
 package CPANPLUS::YACSmoke;
 
+# Dist::Zilla: +PodWeaver
+#ABSTRACT: Yet Another CPANPLUS Smoke Tester
+
 use strict;
 use warnings;
 
@@ -19,8 +22,6 @@ use CPANPLUS::YACSmoke::ReAssemble;
 use CPANPLUS::YACSmoke::SortVers;
 use CPANPLUS::YACSmoke::IniFiles;
 
-use vars qw($VERSION);
-
 use constant DATABASE_FILE => 'cpansmoke.dat';
 use constant CONFIG_FILE   => 'cpansmoke.ini';
 use constant RECENT_FILE   => 'RECENT';
@@ -35,8 +36,6 @@ our %EXPORT_TAGS = (
 
 our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 our @EXPORT    = ( @{ $EXPORT_TAGS{'default'} } );
-
-$VERSION = '1.00';
 
 {
   my %Checked;
@@ -437,12 +436,9 @@ sub _get_build_dir {
 
 }
 
-1;
-__END__
+'Yakkity Yac';
 
-=head1 NAME
-
-CPANPLUS::YACSmoke - Yet Another CPANPLUS Smoke Tester
+=pod
 
 =head1 SYNOPSIS
 
@@ -561,22 +557,22 @@ is that a distribution must have a more recent version, which has previously
 been marked as a PASS. However, if one or more distributions are passed as a
 parameter list, those specific distributions will be purged.
 
-If the flush_flag is set, via the config hashref, to a true value, the directory 
+If the flush_flag is set, via the config hashref, to a true value, the directory
 path created for each older copy of a distribution is deleted.
 
 =item flush( [ 'all' | 'old' ]  )
 
   perl -MCPANPLUS::YACSmoke -e flush()
-  
+
   perl -MCPANPLUS::YACSmoke -e flush('all')
 
   perl -MCPANPLUS::YACSmoke -e flush('old')
 
 Removes unrequired build directories from the designated CPANPLUS build
-directory. Note that this deletes directories regardless of whether the 
+directory. Note that this deletes directories regardless of whether the
 associated distribution was tested.
 
-Default flush is 'all'. The 'old' option will only delete the older 
+Default flush is 'all'. The 'old' option will only delete the older
 distributions, of multiple instances of a distribution.
 
 Note that this cannot be done reliably using last access or modify time, as
@@ -598,9 +594,9 @@ Each of the procedural interface functions are available as methods of a CPANPLU
 
 =item C<new>
 
-The object interface is created normally through the test() or mark() functions of the procedural interface. 
+The object interface is created normally through the test() or mark() functions of the procedural interface.
 
-=back 
+=back
 
 =head1 ENVIRONMENT VARIABLES
 
@@ -629,30 +625,22 @@ Set to 1 to indicate that we are currently running in an automated testing envir
 
 =item C<PERL_MM_USE_DEFAULT>
 
-Set to 1 MakeMaker and Module::Build's prompt functions will always return the default 
+Set to 1 MakeMaker and Module::Build's prompt functions will always return the default
 without waiting for user input.
 
 =item C<MAILDOMAIN>
 
 L<Test::Reporter> uses this. YACSmoke will set this if it isn't already set. It will try to determine
-the domain from the C<email> setting in L<CPANPLUS>. If this is C<cpan.org> it will default to 
+the domain from the C<email> setting in L<CPANPLUS>. If this is C<cpan.org> it will default to
 C<cpantesters.org> ( the perl.org MX doesn't like people trying to impersonate it, for obvious reasons ).
 
 =back
 
-=head1 AUTHOR
-
-Chris C<BinGOs> Williams <chris@bingosnet.co.uk>
+=head1 KUDOS
 
 Based on L<CPAN::YACSmoke> by Robert Rothenberg and Barbie.
 
 Contributions and patience from Jos Boumans the L<CPANPLUS> guy!
-
-=head1 LICENSE
-
-Copyright E<copy> Chris Williams, Jos Boumans, Robert Rothenberg and Barbie.
-
-This module may be used, modified, and distributed under the same terms as Perl itself. Please see the license that came with your Perl distribution for details.
 
 =head1 SEE ALSO
 
