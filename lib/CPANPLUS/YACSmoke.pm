@@ -96,6 +96,7 @@ sub new {
 
   my $exclude_dists;
   my $exclude_auths;
+  my $local_lib;
   my $config_file = catfile( $conf->get_conf('base'), CONFIG_FILE );
   if ( -r $config_file ) {
      my $cfg = CPANPLUS::YACSmoke::IniFiles->new(-file => $config_file);
@@ -113,6 +114,7 @@ sub new {
           $exclude_auths->add( @list );
        }
      }
+     $local_lib = $cfg->val( 'CONFIG', 'local::lib' );
   }
 
   my $self = bless { @_ }, $package;
@@ -121,6 +123,7 @@ sub new {
   $self->{exclude_dists} = $exclude_dists;
   $self->{exclude_auths} = $exclude_auths;
   $self->{allow_retries} = 'aborted|ungraded';
+  $self->{local_lib}     = $local_lib;
   return $self;
 }
 
@@ -154,6 +157,13 @@ sub test {
   }
 
   $self->_disconnect_db();
+
+  my $target = 'create';
+
+  if ( $self->{local_lib} ) {
+     $self->_setup_local_lib();
+     $target = 'install';
+  }
 
   foreach my $mod ( @mods ) {
      eval {
@@ -434,6 +444,18 @@ sub _get_build_dir {
   );
 }
 
+sub _setup_local_lib {
+  my $self = shift;
+  return if !$self->{local_lib};
+  require Cwd;
+  require File::Temp;
+  require CPANPLUS::YACSmoke::locallib;
+  my $tmpdir = File::Temp::tempdir( DIR => '.', CLEANUP => 1 );
+  my $abs = Cwd::abs_path($tmpdir);
+  CPANPLUS::YACSmoke::locallib->ensure_dir_structure_for( $abs, { quiet => 1 } );
+  CPANPLUS::YACSmoke::locallib->setup_env_hash_for( $abs );
+}
+
 }
 
 'Yakkity Yac';
@@ -488,6 +510,17 @@ a particular CPAN author ID.
 
 The above would ignore all distributions of any CPAN author ID that
 begins with C<ASS>, such as C<ASSAM> and C<ASSONIA>.
+
+Experimental support for L<local::lib> type environment has been added.
+In the C<ini> file specify the C<local::lib> setting to enable this feature.
+
+  [CONFIG]
+  local::lib = 1
+
+Setting this will make CPANPLUS::YACSmoke setup a L<local::lib> under the
+current working directory before testing starts. All modules tested (and prereqs
+resolved during testing) will be installed into the L<local::lib>. When testing
+finishes, the L<local::lib> will be removed.
 
 See L<Config::IniFiles> for more information on the INI file format.
 
