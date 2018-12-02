@@ -162,6 +162,7 @@ sub test {
 
   if ( $self->{local_lib} ) {
      $self->_setup_local_lib();
+     $self->{conf}->_perl5lib( $ENV{PERL5LIB} );
      $target = 'install';
   }
 
