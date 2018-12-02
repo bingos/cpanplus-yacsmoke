@@ -164,6 +164,7 @@ sub test {
      $self->_setup_local_lib();
      $self->{conf}->_perl5lib( $ENV{PERL5LIB} );
      $target = 'install';
+     msg("Setup local::lib environment in '$ENV{PERL_LOCAL_LIB_ROOT}'");
   }
 
   foreach my $mod ( @mods ) {
@@ -178,7 +179,15 @@ sub test {
      };
   }
 
-  $self->{cpanplus}->save_state();
+  if ( $self->{local_lib} ) {
+    my $build_dir = $self->_get_build_dir();
+    msg("Flushing '$build_dir'");
+    rmtree($build_dir) if -e $build_dir;
+    msg("Flushed '$build_dir'");
+  }
+
+  $self->{cpanplus}->save_state() if !$self->{local_lib};
+
   return 1;
 }
 
