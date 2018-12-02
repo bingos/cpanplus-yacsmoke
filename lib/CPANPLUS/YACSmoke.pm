@@ -170,7 +170,7 @@ sub test {
 		CPANPLUS::Error->flush();
 		my $stat = $self->{cpanplus}->install(
 				modules  => [ $mod ],
-				target   => 'create',
+				target   => $target,
 				allow_build_interactively => 0,
 				# other settings now set via set_config() method
 		);
