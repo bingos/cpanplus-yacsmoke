@@ -163,6 +163,8 @@ sub test {
   if ( $self->{local_lib} ) {
      $self->_setup_local_lib();
      $self->{conf}->_perl5lib( $ENV{PERL5LIB} );
+     $self->{conf}->set_conf( makeflags  => '' );
+     $self->{conf}->set_conf( buildflags => '' );
      $target = 'install';
      msg("Setup local::lib environment in '$ENV{PERL_LOCAL_LIB_ROOT}'");
   }
