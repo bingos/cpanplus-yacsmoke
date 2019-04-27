@@ -97,6 +97,7 @@ my %throw_away;
 		  my $report = shift || "";
 		  my $grade  = shift;
       my $stack = CPANPLUS::Error->stack_as_string;
+      my $cnf   = $mod->parent->configure_object;
 
 		  SWITCH: {
         my $sv = version->new($CPANPLUS::Internals::VERSION) > version->new('0.9116');
@@ -139,6 +140,12 @@ my %throw_away;
 		  if ( $ENV{PERL5_MINISMOKEBOX} ) {
 			$report .= "Powered by minismokebox version " . $ENV{PERL5_MINISMOKEBOX} . "\n";
 		  }
+      if ( $cnf->get_conf( 'prefer_makefile' ) ) {
+        $report .= qq{\nCPANPLUS is prefering Makefile.PL\n};
+      }
+      else {
+        $report .= qq{\nCPANPLUS is prefering Build.PL\n};
+      }
 		  $report .= _gen_report();
 		  return $report;
         },
